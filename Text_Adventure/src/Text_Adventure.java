@@ -1,3 +1,8 @@
+//! Carlos STATUS -- No
+// * Ethan STATUS -- No
+//? Sebastian STATUS -- No
+
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
