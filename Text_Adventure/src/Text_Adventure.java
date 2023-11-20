@@ -3,5 +3,6 @@ public class Text_Adventure {
         System.out.println("Hello, World!");
         System.out.println("Prueba");
         System.out.println("soy ethan");
+        System.out.println("ciwebnfebfiuewybfiyeuwbfuewbf tu mama");
     }
 }
