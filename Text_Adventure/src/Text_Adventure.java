@@ -1,6 +1,6 @@
 //! Carlos STATUS -- No
 // * Ethan STATUS -- No
-//? Sebastian STATUS -- CODING
+//? Sebastian STATUS -- No
 
 
 import java.io.FileWriter;
@@ -8,6 +8,14 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Text_Adventure {
+    public static void deletefile(String filename){
+        try {
+                FileWriter deleteContent = new FileWriter(filename, false);
+                deleteContent.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    }
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
         System.out.println("Prueba");
@@ -16,12 +24,7 @@ public class Text_Adventure {
 
         Scanner scan = new Scanner(System.in);
         try {
-            try {
-                FileWriter deleteContent = new FileWriter("file.txt", false);
-                deleteContent.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            deletefile("file.txt");
             
             FileWriter writer = new FileWriter("file.txt", true);
 
@@ -43,10 +46,12 @@ public class Text_Adventure {
             writer.write("░░░░░░░░████████░░░░░░░░\n");      
             writer.write("-------------------------------------------------------\n");                    
         
-            writer.close();
+            
 
             System.out.println("Text written to file successfully.");
-
+            deletefile("file.txt");
+            writer.write("WOWZ");
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
