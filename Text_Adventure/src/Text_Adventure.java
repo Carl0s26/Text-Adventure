@@ -10,9 +10,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Text_Adventure {
-    public static void deletefile(File Status_FilePathname){
+    public static void deletefile(File filename){
         try {
-                FileWriter deleteContent = new FileWriter(Status_FilePathname, false);
+                FileWriter deleteContent = new FileWriter(filename, false);
                 deleteContent.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -20,15 +20,15 @@ public class Text_Adventure {
     }
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
-        Random Random_Generator = new Random();
+        Random rand = new Random();
         Scanner scan = new Scanner(System.in);
-        File Status_FilePathname = new File("StatusFile.txt");
+        File file1 = new File("file.txt");
 
 
         try {
-            deletefile(Status_FilePathname);
+            deletefile(file1);
             
-            FileWriter writer = new FileWriter(Status_FilePathname, true);
+            FileWriter writer = new FileWriter(file1, true);
 
             System.out.print("Your name: ");
             String name = scan.nextLine();
@@ -53,7 +53,7 @@ public class Text_Adventure {
 
             System.out.println("Text written to file successfully.");
             
-            writer.write("WOWZ");
+            //writer.write("WOWZ");
             writer.close();
 
             // esto esta para ver se escribe en el codigo antes de ser borrado
@@ -61,8 +61,8 @@ public class Text_Adventure {
             String borrar = scan.nextLine();
             
 
-            deletefile(Status_FilePathname);
-            writer = new FileWriter(Status_FilePathname, true);
+            deletefile(file1);
+            writer = new FileWriter(file1, true);
             writer.write("WOWZ");
             writer.close();
         } catch (IOException e) {
