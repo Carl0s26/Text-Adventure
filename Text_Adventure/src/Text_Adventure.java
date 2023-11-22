@@ -8,6 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Text_Adventure {
     public static void deletefile(File filename){
@@ -18,7 +21,8 @@ public class Text_Adventure {
                 e.printStackTrace();
             }
     }
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
+        ScheduledExecutorService stop_time = Executors.newScheduledThreadPool(1);
         System.out.println("Hello, World!");
         Random rand = new Random();
         Scanner scan = new Scanner(System.in);
@@ -69,29 +73,43 @@ public class Text_Adventure {
             System.out.println("Dormir: ");
             String dormir = scan.nextLine();
             deletefile(file1);
+
+            
             writer = new FileWriter(file1, true);
+            // stop_time.schedule(() -> {
+            //     try {
+                    writer.write("Your name: " + name + "\n");
+                    writer.write("\n");
+                    writer.write("-------------------------------------------------------\n");                             
+                    writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                                   
+                    writer.write("░░██████░░░░░░░░██████░░\n");                  
+                    writer.write("░░░░░░░░░░░░░░░░░░░░░░░░            Health: 20\n");                  
+                    writer.write("░░░░████░░░░░░░░████░░░░\n");                  
+                    writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
+                    writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
+                    writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
+                    writer.write("░░░░░░████████████░░░░░░\n");                  
+                    writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");      
+                    writer.write("-------------------------------------------------------\n");
+                    writer.close();
+                    //stop_time.shutdown();
+                // } catch (IOException e) {
+                //     e.printStackTrace();
+                // }
+                
+            //}, 10, TimeUnit.SECONDS);
 
-            writer.write("Your name: " + name + "\n");
-
-            writer.write("\n");
-            writer.write("-------------------------------------------------------\n");                             
-            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                                   
-            writer.write("░░██████░░░░░░░░██████░░\n");                  
-            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░            Health: 20\n");                  
-            writer.write("░░░░████░░░░░░░░████░░░░\n");                  
-            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
-            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
-            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
-            writer.write("░░░░░░████████████░░░░░░\n");                  
-            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");      
-            writer.write("-------------------------------------------------------\n");
-
-            writer.close();
-
+            
+        
+            
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //! !!!VERY IMPORTANT!!!
         scan.close();
+        
+        //! !!!DO NOT DELETE EVERY!!!
     }
 }
