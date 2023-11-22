@@ -65,6 +65,30 @@ public class Text_Adventure {
             writer = new FileWriter(file1, true);
             writer.write("WOWZ");
             writer.close();
+
+            System.out.println("Dormir: ");
+            String dormir = scan.nextLine();
+            deletefile(file1);
+            writer = new FileWriter(file1, true);
+
+            writer.write("Your name: " + name + "\n");
+
+            writer.write("\n");
+            writer.write("-------------------------------------------------------\n");                             
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                                   
+            writer.write("░░██████░░░░░░░░██████░░\n");                  
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░            Health: 20\n");                  
+            writer.write("░░░░████░░░░░░░░████░░░░\n");                  
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
+            writer.write("░░░░░░████████████░░░░░░\n");                  
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");      
+            writer.write("-------------------------------------------------------\n");
+
+            writer.close();
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
