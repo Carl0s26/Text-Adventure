@@ -21,7 +21,7 @@ public class Text_Adventure {
                 e.printStackTrace();
             }
     }
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
         ScheduledExecutorService stop_time = Executors.newScheduledThreadPool(1);
         System.out.println("Hello, World!");
         Random rand = new Random();
