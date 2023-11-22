@@ -21,6 +21,31 @@ public class Text_Adventure {
                 e.printStackTrace();
             }
     }
+
+    public static void sleeping(String name){
+        File file1 = new File("file.txt");
+        try {
+            FileWriter writer = new FileWriter(file1, true);
+            writer.write("Your name: " + name + "\n");
+            writer.write("\n");
+            writer.write("-------------------------------------------------------\n");                             
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                                   
+            writer.write("░░██████░░░░░░░░██████░░\n");                  
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░            Health: 20\n");                  
+            writer.write("░░░░████░░░░░░░░████░░░░\n");                  
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
+            writer.write("░░░░░░████████████░░░░░░\n");                  
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");      
+            writer.write("-------------------------------------------------------\n");
+            writer.close();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws Exception{
         ScheduledExecutorService stop_time = Executors.newScheduledThreadPool(1);
         System.out.println("Hello, World!");
@@ -75,29 +100,31 @@ public class Text_Adventure {
             deletefile(file1);
 
             
-            writer = new FileWriter(file1, true);
-            // stop_time.schedule(() -> {
-            //     try {
-                    writer.write("Your name: " + name + "\n");
-                    writer.write("\n");
-                    writer.write("-------------------------------------------------------\n");                             
-                    writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                                   
-                    writer.write("░░██████░░░░░░░░██████░░\n");                  
-                    writer.write("░░░░░░░░░░░░░░░░░░░░░░░░            Health: 20\n");                  
-                    writer.write("░░░░████░░░░░░░░████░░░░\n");                  
-                    writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
-                    writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
-                    writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
-                    writer.write("░░░░░░████████████░░░░░░\n");                  
-                    writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");      
-                    writer.write("-------------------------------------------------------\n");
-                    writer.close();
-                    //stop_time.shutdown();
+            // writer = new FileWriter(file1, true);
+            stop_time.schedule(() -> {
+                // try {
+                    // writer.write("Your name: " + name + "\n");
+                    // writer.write("\n");
+                    // writer.write("-------------------------------------------------------\n");                             
+                    // writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                                   
+                    // writer.write("░░██████░░░░░░░░██████░░\n");                  
+                    // writer.write("░░░░░░░░░░░░░░░░░░░░░░░░            Health: 20\n");                  
+                    // writer.write("░░░░████░░░░░░░░████░░░░\n");                  
+                    // writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
+                    // writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
+                    // writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
+                    // writer.write("░░░░░░████████████░░░░░░\n");                  
+                    // writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");      
+                    // writer.write("-------------------------------------------------------\n");
+                    // writer.close();
+                    // stop_time.shutdown();
+                sleeping(name);
+                stop_time.shutdown();
                 // } catch (IOException e) {
                 //     e.printStackTrace();
                 // }
                 
-            //}, 10, TimeUnit.SECONDS);
+            }, 10, TimeUnit.SECONDS);
 
             
         
