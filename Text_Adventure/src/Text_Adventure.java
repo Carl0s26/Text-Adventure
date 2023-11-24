@@ -80,6 +80,33 @@ public class Text_Adventure {
         }
     }
 
+    public static void start_screen(){
+        File file1 = new File("file.txt");
+        try {
+            FileWriter writer = new FileWriter(file1, true);
+            writer.write("                                       /\\                               \n");
+            writer.write("                                  /\\  //\\\\                            \n");
+            writer.write("                           /\\    //\\\\///\\\\\\        /\\                    \n");
+            writer.write("                          //\\\\  ///\\" + "/" + "///\\\\\\\\  /\\  //\\\\                   \n");
+            writer.write("             /\\          /  ^ \\/^ ^/^  ^  ^ \\/^ \\/  ^ \\                  \n");
+            writer.write("            / ^\\    /\\  / ^   /  ^/ ^ ^ ^   ^\\ ^/  ^^  \\                 \n");
+            writer.write("           /^   \\  / ^\\/ ^ ^   ^ / ^  ^    ^  \\/ ^   ^  \\       _        \n");
+            writer.write("          /  ^ ^ \\/^  ^\\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \\     /|\\       \n");
+            writer.write("         / ^ ^  ^ \\ ^  _\\___________________|  |_____^ ^  \\   /|||\\      \n");
+            writer.write("        / ^^  ^ ^ ^\\  /______________________________\\ ^ ^ \\ /|||||\\     \n");
+            writer.write("       /  ^  ^^ ^ ^  /________________________________\\  ^  /|||||||\\    \n");
+            writer.write("      /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /|||||||||\\   \n");
+            writer.write("     / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |       \n"); 
+            writer.write("    / ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo\n");
+            writer.write("    ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo\n");
+            writer.write("\n");
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public static void main(String[] args) throws Exception{
@@ -93,9 +120,12 @@ public class Text_Adventure {
 
         try {
             deletefile(file1);
+            start_screen();
+            
             System.out.print("Your name: ");
             String name = scan.nextLine();
 
+            deletefile(file1);
 
 
             idle(name);
