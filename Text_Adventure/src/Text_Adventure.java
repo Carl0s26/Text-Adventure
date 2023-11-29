@@ -1,4 +1,4 @@
-//! Carlos STATUS -- No
+//! Carlos STATUS -- online
 // * Ethan STATUS -- No
 //? Sebastian STATUS -- No
 
@@ -67,13 +67,10 @@ public class Text_Adventure {
             System.out.println(e);
         }
         
-
     }
 
     public static void battle_system(){
     }
-
-
 
     public static void idle(String name){
         File file1 = new File("file.txt");
@@ -129,15 +126,19 @@ public class Text_Adventure {
 
 
     public static void main(String[] args) throws Exception{
+        ScheduledExecutorService stop_time = Executors.newScheduledThreadPool(1);
+        System.out.println("Hello, World!");
         clear();
         Random rand = new Random();
         Scanner scan = new Scanner(System.in);
         File file1 = new File("file.txt");
         FileWriter writer = new FileWriter(file1, true);
+        
 
         try {
             deletefile(file1);
             start_screen();
+            
 
             slowPrint("You wake up in a cabin in the middle of the woods, your head is ");
             slowPrint("bleeding and a man is treating your wounds.");
@@ -159,9 +160,9 @@ public class Text_Adventure {
             writer.close();
             Thread.sleep(2000);
             deletefile(file1);
+            
             Thread.sleep(2000);
             sleeping(name);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
