@@ -1,4 +1,4 @@
-//! Carlos STATUS -- No
+//! Carlos STATUS -- Carreando
 // * Ethan STATUS -- No
 //? Sebastian STATUS -- No
 
@@ -13,7 +13,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Text_Adventure {
-
     public static void clear() {  
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
@@ -55,24 +54,6 @@ public class Text_Adventure {
         }
     }
 
-    public static void slowPrint(String output) {
-        char[] chars = output.toCharArray();
-         try {
-            for (int i = 0; i < chars.length-1; i++){
-                System.out.print(chars[i]);
-                Thread.sleep(50);
-                }
-                System.out.println(chars[chars.length-1]);
-        }catch (Exception e) {
-            System.out.println(e);
-        }
-        
-
-    }
-
-    public static void battle_system(){
-    }
-
 
 
     public static void idle(String name){
@@ -84,7 +65,7 @@ public class Text_Adventure {
             writer.write("-------------------------------------------------------\n");                             
             writer.write("░░██████░░░░░░░░██████░░\n");                                   
             writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
-            writer.write("░░░░████░░░░░░░░████░░░░            Health: 100\n");                  
+            writer.write("░░░░████░░░░░░░░████░░░░            Health: 20\n");                  
             writer.write("░░░░████░░░░░░░░████░░░░\n");                  
             writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
             writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
@@ -129,24 +110,20 @@ public class Text_Adventure {
 
 
     public static void main(String[] args) throws Exception{
-        clear();
+        ScheduledExecutorService stop_time = Executors.newScheduledThreadPool(1);
+        System.out.println("Hello, World!");
         Random rand = new Random();
         Scanner scan = new Scanner(System.in);
         File file1 = new File("file.txt");
         FileWriter writer = new FileWriter(file1, true);
+        clear();
 
         try {
             deletefile(file1);
             start_screen();
-
-            slowPrint("You wake up in a cabin in the middle of the woods, your head is ");
-            slowPrint("bleeding and a man is treating your wounds.");
-            slowPrint("The man says in a raspy voice: 'You recieved quite a beating in");
-            slowPrint("those woods young one, what may your name be?'");
+            
             System.out.print("Your name: ");
             String name = scan.nextLine();
-
-            slowPrint(name + "?, huh, thats a nice name");
 
             deletefile(file1);
 
@@ -161,9 +138,11 @@ public class Text_Adventure {
             System.out.println("Dormir: ");
             String dormir = scan.nextLine();
             deletefile(file1);
-            Thread.sleep(2000);
-            sleeping(name);
-
+            stop_time.schedule(() -> {
+                sleeping(name);
+                stop_time.shutdown();
+                
+            }, 3, TimeUnit.SECONDS);
         } catch (IOException e) {
             e.printStackTrace();
         }
