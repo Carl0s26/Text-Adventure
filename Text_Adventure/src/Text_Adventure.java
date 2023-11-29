@@ -40,7 +40,7 @@ public class Text_Adventure {
             writer.write("-------------------------------------------------------\n");                             
             writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                                   
             writer.write("░░██████░░░░░░░░██████░░\n");                  
-            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░            Health: 20\n");                  
+            writer.write("░░░░░░░░░░░░░░░░░░░░░░░░            Health: 100\n");                  
             writer.write("░░░░████░░░░░░░░████░░░░\n");                  
             writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
             writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");                  
@@ -153,13 +153,11 @@ public class Text_Adventure {
 
             idle(name);
             
-            System.out.println("borrar?");
-            String borrar = scan.nextLine();
+            Thread.sleep(2000);
             deletefile(file1);
             writer.write("WOWZ");
             writer.close();
-            System.out.println("Dormir: ");
-            String dormir = scan.nextLine();
+            Thread.sleep(2000);
             deletefile(file1);
             Thread.sleep(2000);
             sleeping(name);
