@@ -223,7 +223,7 @@ public class Text_Adventure {
     public static void idle(String name, int Player_Health, int agility, int Player_luck, int Player_Strength, int Player_XP){
         File gui = new File("gui.txt");
         try {
-            FileWriter writer = new FileWriter(file1, true);
+            FileWriter writer = new FileWriter(gui, true);
             writer.write("Your name: " + name + "\n");
             writer.write("\n");
             writer.write("-------------------------------------------------------\n");                             
@@ -245,9 +245,9 @@ public class Text_Adventure {
     }
 
     public static void damage(String name, int Player_Health, int agility, int Player_luck, int Player_Strength, int Player_XP){
-        File file1 = new File("gui.txt");
+        File gui = new File("gui.txt");
         try {
-            FileWriter writer = new FileWriter(file1, true);
+            FileWriter writer = new FileWriter(gui, true);
             writer.write("Your name: " + name + "\n");
             writer.write("\n");
             writer.write("-------------------------------------------------------\n");                             
@@ -269,9 +269,9 @@ public class Text_Adventure {
     }
 
     public static void start_screen(){
-        File file1 = new File("gui.txt");
+        File gui = new File("gui.txt");
         try {
-            FileWriter writer = new FileWriter(file1, true);
+            FileWriter writer = new FileWriter(gui, true);
             writer.write("                                       /\\                               \n");
             writer.write("                                  /\\  //\\\\                            \n");
             writer.write("                           /\\    //\\\\///\\\\\\        /\\                    \n");
@@ -301,8 +301,8 @@ public class Text_Adventure {
         clear();
         Random rand = new Random();
         Scanner scan = new Scanner(System.in);
-        File file1 = new File("gui.txt");
-        FileWriter writer = new FileWriter(file1, true);
+        File gui = new File("gui.txt");
+        FileWriter writer = new FileWriter(gui, true);
         
         int escape_probability = 0;
         boolean user_escape = false;
@@ -331,7 +331,7 @@ public class Text_Adventure {
         Foes Nurse = new Foes("Nurse",20, 30, 1, 60);
 
         try {
-            deletefile(file1);
+            deletefile(gui);
             start_screen();
             
 
@@ -353,7 +353,7 @@ public class Text_Adventure {
             Thread.sleep(4000);
             clear();
 
-            deletefile(file1);
+            deletefile(gui);
             idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
 
             slowPrint("You get out of the house looking at the bright sun as you walk towards the forest.");
@@ -373,11 +373,11 @@ public class Text_Adventure {
             
             slowPrint("After what happened with the wolf, extremely tired, you decided to take a nap...");
             try{
-                deletefile(file1);
+                deletefile(gui);
                 sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
                 Thread.sleep(1500);
                 slowPrint("You suddently woke up hearing screams in the middle of the now completely dark forest.");
-                deletefile(file1);
+                deletefile(gui);
                 idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
             }catch(Exception e){
                 System.out.println(e);
@@ -404,13 +404,13 @@ public class Text_Adventure {
 
 
 
-            deletefile(file1);
+            deletefile(gui);
 
 
             idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
             
             Thread.sleep(2000);
-            deletefile(file1);
+            deletefile(gui);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
