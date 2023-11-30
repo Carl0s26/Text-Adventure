@@ -62,6 +62,62 @@ public class Text_Adventure {
     
     }
 
+    public static void archery() {
+        Scanner scan = new Scanner(System.in);
+        String inpt = "0";
+        boolean increasing = true;
+        clear();
+        int number = 0;
+        try{
+            while(true){
+                for (var i = 0; i < number; i++) {
+                    System.out.print(" ");
+                }
+                System.out.print("o");
+                System.out.println("");
+                System.out.println("             /\\");
+                System.out.println("            |  |");
+                System.out.println("             \\/");
+                //System.out.println(number);
+                Thread.sleep(100);
+
+                if (increasing) {
+                    number++;
+                } else {
+                    number--;
+                }
+
+                if (number == 30) {
+                    increasing = false;
+                } else if (number == 0) {
+                    increasing = true;
+                }
+
+                clear();
+
+                if (System.in.available() > 0) {
+                    inpt = scan.nextLine();
+                }
+
+                if  (inpt.equals("")){
+                    if(number <= 16 && number >= 11){
+                        slowPrint("Yay, you win");
+                        break;
+                    }else{
+                        slowPrint("Boo, you lose");
+                        break;
+                    }
+                    
+                }
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }finally {
+            scan.close();
+        }
+        
+    }
+
     public static void sleeping(String name, int Player_Health, int agility, int Player_luck, int Player_Strength, int Player_XP){
         File gui = new File("gui.txt");
         try {
