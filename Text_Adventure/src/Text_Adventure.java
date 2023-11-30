@@ -1,5 +1,5 @@
 //! Carlos STATUS -- no
-// * Ethan STATUS -- si
+// * Ethan STATUS -- no
 //? Sebastian STATUS -- No
 
 
