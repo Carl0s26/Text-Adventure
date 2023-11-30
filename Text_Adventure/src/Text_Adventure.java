@@ -139,13 +139,13 @@ public class Text_Adventure {
                     slowPrint("Your attack dealt " + damage_dealt + " damage points");
                     if (monster_Health <= 0) {
                         monster_Health = 0;
-                        slowPrint("The " + Monster.getMonster_name() + " hp is at: " + monster_Health);
+                        slowPrint("The " + Monster.getMonster_name() + " health is at: " + monster_Health);
                         slowPrint("You managed to kill the " + Monster.getMonster_name() );
                         System.out.println("");
                         damage_dealt = 0;
                         break;
                     }
-                    slowPrint("The " + Monster.getMonster_name() + " hp is at: " + monster_Health);
+                    slowPrint("The " + Monster.getMonster_name() + " health is at: " + monster_Health);
 
                     
                     
@@ -162,17 +162,22 @@ public class Text_Adventure {
                         damage_dealt = Monster.getMinStrength();
                         damage_dealt += rand.nextInt(Monster.getMaxStrength() - Monster.getMinStrength());
                         Player_Health -= damage_dealt;
-                        slowPrint("The " + Monster.getMonster_name() + "'s attack dealt " + damage_dealt + " damage points");
+                        if (damage_dealt < 2){
+                            slowPrint("The " + Monster.getMonster_name() + "'s attack dealt " + damage_dealt + " damage point");
+                        }else{
+                            slowPrint("The " + Monster.getMonster_name() + "'s attack dealt " + damage_dealt + " damage points");
+                        }
+                        
                         try{
                             deletefile(gui);
                             damage(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
-                            Thread.sleep(750);
+                            Thread.sleep(1000);
                             deletefile(gui);
                             idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
                         }catch(Exception e){
                             System.out.println(e);
                         }
-                        slowPrint("Your hp is at: " + Player_Health);
+                        slowPrint("Your health is at: " + Player_Health);
                         System.out.println("");
                         damage_dealt = 0;
                     }
@@ -194,18 +199,22 @@ public class Text_Adventure {
                     damage_dealt = Monster.getMinStrength();
                     damage_dealt += rand.nextInt(Monster.getMaxStrength() - Monster.getMinStrength());
                     Player_Health -= damage_dealt;
-                    slowPrint("The " + Monster.getMonster_name() + "'s attack dealt " + damage_dealt + " damage points");
+                    if (damage_dealt < 2){
+                        slowPrint("The " + Monster.getMonster_name() + "'s attack dealt " + damage_dealt + " damage point");
+                    }else{
+                        slowPrint("The " + Monster.getMonster_name() + "'s attack dealt " + damage_dealt + " damage points");
+                    }
                     try{
                         deletefile(gui);
                         damage(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
-                        Thread.sleep(750);
+                        Thread.sleep(1000);
                         deletefile(gui);
                         idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
                     }catch(Exception e){
                         System.out.println(e);
                     }
             
-                    slowPrint("Your hp is at: " + Player_Health);
+                    slowPrint("Your health is at: " + Player_Health);
                     System.out.println("");
                     damage_dealt = 0;
                     }
@@ -350,7 +359,7 @@ public class Text_Adventure {
             slowPrint("you should take it just in case something happens out there.");
             Thread.sleep(3000);
             slowPrint("Now get out of my house, I can't take care of you forever!'");
-            Thread.sleep(4000);
+            Thread.sleep(3000);
             clear();
 
             deletefile(gui);
@@ -389,23 +398,20 @@ public class Text_Adventure {
             System.out.println("");
 
             while (!choice.strip().toLowerCase().equals("investigate") && !choice.strip().toLowerCase().equals("sleeping") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")&& !choice.strip().toLowerCase().equals("sleep")&& !choice.strip().toLowerCase().equals("continuesleeping")) {
-                slowPrint("You need to choose either to escape or to figth");
+                slowPrint("You need to choose either to escape or to fight");
                 choice = scan.nextLine();
                 System.out.println("");
             }
 
             if (choice.strip().toLowerCase().equals("1") || choice.strip().toLowerCase().equals("investigate")){
-                slowPrint("You find a Giagiant Golem Attacking the man that saved you earlier");
+                slowPrint("You find a Mud Golem Attacking the man that saved you earlier");
                 battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_XP, name, monster_Health, user_escape);
             }
             else{
                 System.out.println(" bla bla bla");
             }
 
-
-
             deletefile(gui);
-
 
             idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
             
