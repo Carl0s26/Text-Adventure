@@ -6,6 +6,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -102,9 +103,11 @@ public class Text_Adventure {
                 if  (inpt.equals("")){
                     if(number <= 16 && number >= 11){
                         slowPrint("Yay, you win");
+                        
                         break;
                     }else{
                         slowPrint("Boo, you lose");
+                        
                         break;
                     }
                     
@@ -113,12 +116,12 @@ public class Text_Adventure {
         }catch(Exception e){
             System.out.println(e);
         }finally {
-            scan.close();
+            
         }
         
     }
 
-    public static void sleeping(String name, int Player_Health, int agility, int Player_luck, int Player_Strength, int Player_XP){
+    public static void sleeping(String name, int Player_Health, int agility, int Player_luck, int Player_Strength, int Player_coins){
         File gui = new File("gui.txt");
         try {
             FileWriter writer = new FileWriter(gui, true);
@@ -131,7 +134,7 @@ public class Text_Adventure {
                 writer.write("░░░░████░░░░░░░░████░░░░        Dexterity: " + agility +  "\n");                  
                 writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        Luck: "      + Player_luck +       "\n");                  
                 writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        Strength: "  + Player_Strength +   "\n");                  
-                writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        XP: "        + Player_XP +         "\n");                  
+                writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        XP: "        + Player_coins +         "\n");                  
             writer.write("░░░░░░░░████████░░░░░░░░\n");                  
             writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");      
             writer.write("-------------------------------------------------------\n"); 
@@ -162,7 +165,7 @@ public class Text_Adventure {
 
     // user scape must always be false when using the function
 
-    public static void battle_system(Foes Monster, int Player_Health, int agility,  int Player_Strength, int Player_luck, int Player_XP, String name, int monster_Health, boolean user_escape){
+    public static void battle_system(Foes Monster, int Player_Health, int agility,  int Player_Strength, int Player_luck, int Player_coins, String name, int monster_Health, boolean user_escape){
             int escape_probability = 0;
             int damage_dealt = 0;
             Random rand = new Random();
@@ -215,6 +218,9 @@ public class Text_Adventure {
                     System.out.println("");
                     for (int i = 1; i <= Monster.getAgility(); i++){
                     
+                        if (i >= 2) {
+                            slowPrint("The monster managed to  make another attack due its high agility");
+                        }
                         damage_dealt = Monster.getMinStrength();
                         damage_dealt += rand.nextInt(Monster.getMaxStrength() - Monster.getMinStrength());
                         Player_Health -= damage_dealt;
@@ -226,10 +232,10 @@ public class Text_Adventure {
                         
                         try{
                             deletefile(gui);
-                            damage(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
+                            damage(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
                             Thread.sleep(1000);
                             deletefile(gui);
-                            idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
+                            idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
                         }catch(Exception e){
                             System.out.println(e);
                         }
@@ -262,10 +268,10 @@ public class Text_Adventure {
                     }
                     try{
                         deletefile(gui);
-                        damage(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
+                        damage(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
                         Thread.sleep(1000);
                         deletefile(gui);
-                        idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
+                        idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
                     }catch(Exception e){
                         System.out.println(e);
                     }
@@ -279,13 +285,14 @@ public class Text_Adventure {
             
         }while (user_escape == false && monster_Health != 0);
         user_escape = false;
-        Player_XP += Monster.getHealth()*2;
+        Player_coins += Monster.getHealth()*2;
+        
         
         
 
     }
 
-    public static void idle(String name, int Player_Health, int agility, int Player_luck, int Player_Strength, int Player_XP){
+    public static void idle(String name, int Player_Health, int agility, int Player_luck, int Player_Strength, int Player_coins){
         File gui = new File("gui.txt");
         try {
             FileWriter writer = new FileWriter(gui, true);
@@ -298,7 +305,7 @@ public class Text_Adventure {
                 writer.write("░░░░████░░░░░░░░████░░░░        Dexterity: " + agility +  "\n");                  
                 writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        Luck: "      + Player_luck +       "\n");                  
                 writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        Strength: "  + Player_Strength +   "\n");                  
-                writer.write("░░░░██░░░░░░░░░░░░██░░░░        XP: "        + Player_XP +         "\n");                  
+                writer.write("░░░░██░░░░░░░░░░░░██░░░░        XP: "        + Player_coins +         "\n");                  
             writer.write("░░░░░░██░░░░░░░░██░░░░░░\n");                  
             writer.write("░░░░░░░░████████░░░░░░░░\n");      
             writer.write("-------------------------------------------------------\n"); 
@@ -309,7 +316,7 @@ public class Text_Adventure {
         }
     }
 
-    public static void damage(String name, int Player_Health, int agility, int Player_luck, int Player_Strength, int Player_XP){
+    public static void damage(String name, int Player_Health, int agility, int Player_luck, int Player_Strength, int Player_coins){
         File gui = new File("gui.txt");
         try {
             FileWriter writer = new FileWriter(gui, true);
@@ -322,7 +329,7 @@ public class Text_Adventure {
                 writer.write("░░░░░░░░█░░░░░░█░░░░░░░░        Dexterity: " + agility +  "\n");                  
                 writer.write("░░░░████░░░░░░░░████░░░░        Luck: "      + Player_luck +       "\n");                  
                 writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        Strength: "  + Player_Strength +   "\n");                  
-                writer.write("░░░░░░░░████████░░░░░░░░        XP: "        + Player_XP +         "\n");                  
+                writer.write("░░░░░░░░████████░░░░░░░░        XP: "        + Player_coins +         "\n");                  
             writer.write("░░░░░░░░██░░░░██░░░░░░░░\n");                  
             writer.write("░░░░░░░░████████░░░░░░░░\n");      
             writer.write("-------------------------------------------------------\n"); 
@@ -363,18 +370,20 @@ public class Text_Adventure {
 
 
     public static void main(String[] args) throws Exception{
+        archery();
         clear();
         Random rand = new Random();
         Scanner scan = new Scanner(System.in);
         File gui = new File("gui.txt");
         FileWriter writer = new FileWriter(gui, true);
+        ArrayList<String> UserInventory = new ArrayList<String>();
         
         int escape_probability = 0;
         boolean user_escape = false;
         int monster_attacks = 0;
         int monster_Health = 0;
 
-        int Player_XP = 0;
+        int Player_coins = 0;
         int Player_Health = 100;
         int Player_Strength = 5;
         int agility = 1;
@@ -415,11 +424,12 @@ public class Text_Adventure {
             slowPrint("you should take it just in case something happens out there.");
             Thread.sleep(3000);
             slowPrint("Now get out of my house, I can't take care of you forever!'");
+            UserInventory.add("Wooden Sword");
             Thread.sleep(3000);
             clear();
 
             deletefile(gui);
-            idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
+            idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
 
             slowPrint("You get out of the house looking at the bright sun as you walk towards the forest.");
             slowPrint("You slowly walk through the forest when you encounter a leaf monster");
@@ -427,23 +437,22 @@ public class Text_Adventure {
             // first monster
             monster_Health = Leaf_Monster.getHealth();
             
-            battle_system(Leaf_Monster, Player_Health, agility, Player_Strength, Player_luck, Player_XP, name, monster_Health, user_escape);
+            battle_system(Leaf_Monster, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, monster_Health, user_escape);
 
         
             slowPrint("After the encounter with the Leaf Monster " + name + " found himself infront of a ");
             slowPrint("savage wolf who came due to the commotion caused by your battle.");
             // second monster
             monster_Health = Wolf.getHealth();
-            battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_XP, name, monster_Health, user_escape);
+            battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, monster_Health, user_escape);
             
             slowPrint("After what happened with the wolf, extremely tired, you decided to take a nap...");
             try{
                 deletefile(gui);
-                sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
+                sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
                 Thread.sleep(1500);
-                slowPrint("You suddently woke up hearing screams in the middle of the now completely dark forest.");
                 deletefile(gui);
-                idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
+                idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
             }catch(Exception e){
                 System.out.println(e);
             }
@@ -461,7 +470,11 @@ public class Text_Adventure {
 
             if (choice.strip().toLowerCase().equals("1") || choice.strip().toLowerCase().equals("investigate")){
                 slowPrint("You find a Mud Golem Attacking the man that saved you earlier");
-                battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_XP, name, monster_Health, user_escape);
+                battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, monster_Health, user_escape);
+                slowPrint(" The man who was almoust killed decides to give you a iron sword in gratitude. ");
+                UserInventory.add("Iron Sword");
+                UserInventory.remove("Wooden Sword");
+                
             }
             else{
                 System.out.println(" bla bla bla");
@@ -469,7 +482,7 @@ public class Text_Adventure {
 
             deletefile(gui);
 
-            idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_XP);
+            idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
             
             Thread.sleep(2000);
             deletefile(gui);
