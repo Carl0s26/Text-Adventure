@@ -1,4 +1,4 @@
-//! Carlos STATUS -- trabajando
+//! Carlos STATUS -- no
 // * Ethan STATUS -- no
 //? Sebastian STATUS -- No
 
@@ -134,7 +134,7 @@ public class Text_Adventure {
                 writer.write("░░░░████░░░░░░░░████░░░░        Dexterity: " + agility +  "\n");                  
                 writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        Luck: "      + Player_luck +       "\n");                  
                 writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        Strength: "  + Player_Strength +   "\n");                  
-                writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        XP: "        + Player_coins +         "\n");                  
+                writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        Coins: "        + Player_coins +         "\n");                  
             writer.write("░░░░░░░░████████░░░░░░░░\n");                  
             writer.write("░░░░░░░░░░░░░░░░░░░░░░░░\n");      
             writer.write("-------------------------------------------------------\n"); 
@@ -165,7 +165,7 @@ public class Text_Adventure {
 
     // user scape must always be false when using the function
     public static int Player_Health ;
-    public static void battle_system(Foes Monster, int Player_Health, int agility,  int Player_Strength, int Player_luck, int Player_coins, String name, boolean user_escape){
+    public static int battle_system(Foes Monster, int Player_Health, int agility,  int Player_Strength, int Player_luck, int Player_coins, String name, boolean user_escape){
             
         
             int monster_Health = Monster.getHealth();
@@ -288,7 +288,9 @@ public class Text_Adventure {
             
         }while (user_escape == false && monster_Health != 0);
         user_escape = false;
-        Player_coins += Monster.getHealth()*2;
+        
+        return Player_Health;
+        
         
         
         
@@ -308,7 +310,7 @@ public class Text_Adventure {
                 writer.write("░░░░████░░░░░░░░████░░░░        Dexterity: " + agility +  "\n");                  
                 writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        Luck: "      + Player_luck +       "\n");                  
                 writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        Strength: "  + Player_Strength +   "\n");                  
-                writer.write("░░░░██░░░░░░░░░░░░██░░░░        XP: "        + Player_coins +         "\n");                  
+                writer.write("░░░░██░░░░░░░░░░░░██░░░░        Coins: "        + Player_coins +         "\n");                  
             writer.write("░░░░░░██░░░░░░░░██░░░░░░\n");                  
             writer.write("░░░░░░░░████████░░░░░░░░\n");      
             writer.write("-------------------------------------------------------\n"); 
@@ -332,7 +334,7 @@ public class Text_Adventure {
                 writer.write("░░░░░░░░█░░░░░░█░░░░░░░░        Dexterity: " + agility +  "\n");                  
                 writer.write("░░░░████░░░░░░░░████░░░░        Luck: "      + Player_luck +       "\n");                  
                 writer.write("░░░░░░░░░░░░░░░░░░░░░░░░        Strength: "  + Player_Strength +   "\n");                  
-                writer.write("░░░░░░░░████████░░░░░░░░        XP: "        + Player_coins +         "\n");                  
+                writer.write("░░░░░░░░████████░░░░░░░░        Coins: "        + Player_coins +         "\n");                  
             writer.write("░░░░░░░░██░░░░██░░░░░░░░\n");                  
             writer.write("░░░░░░░░████████░░░░░░░░\n");      
             writer.write("-------------------------------------------------------\n"); 
@@ -414,7 +416,7 @@ public class Text_Adventure {
 
             slowPrint("You wake up in a cabin in the middle of the woods, your head is ");
             slowPrint("bleeding and a man is treating your wounds.");
-            slowPrint("The man says in a raspy voice: 'You recieved quite a beating in");
+            slowPrint("The man says in a raspy voice:  'You recieved quite a beating in");
             slowPrint("those woods young one, what may your name be?");
             System.out.println("");
             System.out.print("Your name: ");
@@ -438,18 +440,18 @@ public class Text_Adventure {
             slowPrint("You slowly walk through the forest when you encounter a leaf monster");
             
             // first monster
-            monster_Health = Leaf_Monster.getHealth();
-            
-            battle_system(Leaf_Monster, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape);
+            Player_Health = battle_system(Leaf_Monster, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape);
+            Player_coins += Leaf_Monster.getHealth()*2;
 
         
-            slowPrint("After the encounter with the Leaf Monster " + name + " found himself infront of a ");
+            slowPrint("After the encounter with the Leaf Monster " + name + " found himself infront of a");
             slowPrint("savage wolf who came due to the commotion caused by your battle.");
             // second monster
-            monster_Health = Wolf.getHealth();
-            battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape);
-            
+            Player_Health = battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape);
+            Player_coins += Wolf.getHealth()*2;
+
             slowPrint("After what happened with the wolf, extremely tired, you decided to take a nap...");
+            
             try{
                 deletefile(gui);
                 sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
@@ -473,7 +475,8 @@ public class Text_Adventure {
 
             if (choice.strip().toLowerCase().equals("1") || choice.strip().toLowerCase().equals("investigate")){
                 slowPrint("You find a Mud Golem Attacking the man that saved you earlier");
-                battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape);
+            Player_Health = battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape);
+                Player_coins += Mud_Golem.getHealth()*2;
                 slowPrint(" The man who was almoust killed decides to give you a iron sword in gratitude. ");
                 UserInventory.add("Iron Sword");
                 UserInventory.remove("Wooden Sword");
