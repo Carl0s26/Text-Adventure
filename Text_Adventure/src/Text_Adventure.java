@@ -1,6 +1,6 @@
 //! Carlos STATUS -- no
 // * Ethan STATUS -- si
-//? Sebastian STATUS -- No
+//? Sebastian STATUS -- CHAMBEANDO
 
 
 import java.io.File;
@@ -18,7 +18,7 @@ public class Text_Adventure {
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }
-
+    //! ------------------------------------------------------------------------------------------
 
     public static void deletefile(File filename){
         try {
@@ -28,6 +28,8 @@ public class Text_Adventure {
             e.printStackTrace();
         }
     }
+
+    //! ------------------------------------------------------------------------------------------
 
     public static class Foes {
         int min_strength;
@@ -62,6 +64,8 @@ public class Text_Adventure {
     
     }
 
+    //! ------------------------------------------------------------------------------------------
+
     public static class InventoryObject {
         int prize;
         String identification_number;
@@ -88,8 +92,9 @@ public class Text_Adventure {
         }
     }
 
+    //! ------------------------------------------------------------------------------------------
 
-    public static void archery() {
+    public static void archery(Integer Speed) {
         Scanner scan = new Scanner(System.in);
         String inpt = "0";
         boolean increasing = true;
@@ -106,7 +111,7 @@ public class Text_Adventure {
                 System.out.println("            |  |");
                 System.out.println("             \\/");
                 //System.out.println(number);
-                Thread.sleep(100);
+                Thread.sleep(Speed);
 
                 if (increasing) {
                     number++;
@@ -144,22 +149,24 @@ public class Text_Adventure {
         }finally {
             
         }
-        scan.close();
     }
+
+    //! ------------------------------------------------------------------------------------------
 
     // the function for the user to buy objects
 
     public static int shop(ArrayList<InventoryObject> AllObjects,List<InventoryObject> UserInventory, InventoryObject Small_Health_Potion, 
     InventoryObject Medium_Health_Potion, InventoryObject Big_Health_Potion, InventoryObject Strength_token, InventoryObject Bow, 
-    InventoryObject SpeedPotion, InventoryObject Mysterious_Potion, InventoryObject Something3, InventoryObject Something4, 
-    InventoryObject Something5, InventoryObject Something6, int Player_coins){
+    InventoryObject Speedy_Pills, InventoryObject Mysterious_Potion, InventoryObject Lucky_Clover, InventoryObject Dodge_Tonic, 
+    InventoryObject Something5, InventoryObject Soap, int Player_coins){
 
         Scanner scan = new Scanner(System.in);
         boolean While = true;
-        slowPrint("Welcome to the shop");
-        slowPrint("Choose a object to buy and enter 11 or esc to get out of the shop");
+        slowPrint("Hello fellow traveler");
+        slowPrint("Welcome to my shop");
+        slowPrint("Choose a object to buy and type 11 or 'enter' to get out of my shop");
         for (int i = 0; i < AllObjects.size(); i++) {
-            slowPrint("[" + AllObjects.get(i).getidentification_number() + "] " + AllObjects.get(i).getobject_name() + " Its price is: " + AllObjects.get(i).getprize() + " coins");
+            System.out.println("[" + AllObjects.get(i).getidentification_number() + "] " + AllObjects.get(i).getobject_name() + ": " + AllObjects.get(i).getprize() + " coins");
             
         }
         do {
@@ -216,10 +223,10 @@ public class Text_Adventure {
                 }
                 break;
             case "5":
-                if (Player_coins >= SpeedPotion.getprize()) {
-                    Player_coins -= SpeedPotion.getprize();
-                    UserInventory.add(SpeedPotion);
-                    slowPrint("You succesfully bougth a " + SpeedPotion.getobject_name());
+                if (Player_coins >= Speedy_Pills.getprize()) {
+                    Player_coins -= Speedy_Pills.getprize();
+                    UserInventory.add(Speedy_Pills);
+                    slowPrint("You succesfully bougth a " + Speedy_Pills.getobject_name());
                 }
                 else{
                     slowPrint("You don't have enougth coins");
@@ -236,20 +243,20 @@ public class Text_Adventure {
                 }
                 break;
             case "7":
-                if (Player_coins >= Something3.getprize()) {
-                    Player_coins -= Something3.getprize();
-                    UserInventory.add(Something3);
-                    slowPrint("You succesfully bougth a " + Something3.getobject_name());
+                if (Player_coins >= Lucky_Clover.getprize()) {
+                    Player_coins -= Lucky_Clover.getprize();
+                    UserInventory.add(Lucky_Clover);
+                    slowPrint("You succesfully bougth a " + Lucky_Clover.getobject_name());
                 }
                 else{
                     slowPrint("You don't have enougth coins");
                 }
                 break;
             case "8":
-                if (Player_coins >= Something4.getprize()) {
-                    Player_coins -= Something4.getprize();
-                    UserInventory.add(Something4);
-                    slowPrint("You succesfully bougth a " + Something4.getobject_name());
+                if (Player_coins >= Dodge_Tonic.getprize()) {
+                    Player_coins -= Dodge_Tonic.getprize();
+                    UserInventory.add(Dodge_Tonic);
+                    slowPrint("You succesfully bougth a " + Dodge_Tonic.getobject_name());
                 }
                 else{
                     slowPrint("You don't have enougth coins");
@@ -266,10 +273,10 @@ public class Text_Adventure {
                 }
                 break;
             case "10":
-                if (Player_coins >= Something6.getprize()) {
-                    Player_coins -= Something6.getprize();
-                    UserInventory.add(Something6);
-                    slowPrint("You succesfully bougth a " + Something6.getobject_name());
+                if (Player_coins >= Soap.getprize()) {
+                    Player_coins -= Soap.getprize();
+                    UserInventory.add(Soap);
+                    slowPrint("You succesfully bougth a " + Soap.getobject_name());
                 }
                 else{
                     slowPrint("You don't have enougth coins");
@@ -295,10 +302,11 @@ public class Text_Adventure {
         
         } while (While == true);
         
-        scan.close();
         return Player_coins;
         
     }
+
+    //! ------------------------------------------------------------------------------------------
 
     public static void sleeping(String name, int Player_Health, int agility, int Player_luck, int Player_Strength, int Player_coins){
         File gui = new File("gui.txt");
@@ -324,6 +332,8 @@ public class Text_Adventure {
         }
     }
 
+    //! ------------------------------------------------------------------------------------------
+
     public static void slowPrint(String output) {
         char[] chars = output.toCharArray();
          try {
@@ -338,9 +348,13 @@ public class Text_Adventure {
         
     }
 
+    //! ------------------------------------------------------------------------------------------
+
     public static void LevelUP(String output) {
         
     }
+
+    //! ------------------------------------------------------------------------------------------
 
     // user scape must always be false when using the function
     public static int Player_Health;
@@ -348,8 +362,8 @@ public class Text_Adventure {
     public static int battle_system(Foes Monster, int Player_Health, int agility,  int Player_Strength, int Player_luck, int Player_coins, 
     String name, boolean user_escape, List<InventoryObject> UserInventory, InventoryObject Small_Health_Potion, 
     InventoryObject Medium_Health_Potion, InventoryObject Big_Health_Potion, InventoryObject Strength_token, InventoryObject Bow, 
-    InventoryObject SpeedPotion, InventoryObject Mysterious_Potion, InventoryObject Something3, InventoryObject Something4, InventoryObject Something5, 
-    InventoryObject Something6){
+    InventoryObject Speedy_Pills, InventoryObject Mysterious_Potion, InventoryObject Lucky_Clover, InventoryObject Dodge_Tonic, InventoryObject Something5, 
+    InventoryObject Soap){
 
             int monster_Health = Monster.getHealth();
             int escape_probability = 0;
@@ -400,6 +414,10 @@ public class Text_Adventure {
                     damage_dealt += rand.nextInt(Player_Strength/2);
                     monster_Health -= damage_dealt;
                     slowPrint("Your attack dealt " + damage_dealt + " damage points");
+
+                    if (damage_dealt > Player_Strength){
+                        slowPrint("A CRITICAL HIT!");
+                    }
                     if (monster_Health <= 0) {
                         monster_Health = 0;
                         slowPrint("The " + Monster.getMonster_name() + " health is at: " + monster_Health);
@@ -478,8 +496,7 @@ public class Text_Adventure {
                         }
                         
                     case "2":
-                    // Big healing potion
-                            
+                    // Big healing potion 
                         if (UserInventory.contains(Big_Health_Potion)) {
                             Player_Health += 25;
                             break;
@@ -493,52 +510,47 @@ public class Text_Adventure {
                         }
 
                     case "4":
-                    // bow
-                        if (UserInventory.contains(Bow)) {
-                            archery();
+                        if (UserInventory.contains(Speedy_Pills)) {
                             break;
                         }
                         
                     case "5":
-                        if (UserInventory.contains(SpeedPotion)) {
+                        if (UserInventory.contains(Mysterious_Potion)) {
+                            Player_Health -= 50;
                             break;
                         }
                         
                     case "6":
-                        if (UserInventory.contains(Mysterious_Potion)) {
+                        if (UserInventory.contains(Lucky_Clover)) {
                             break;
                         }
                         
                     case "7":
-                        if (UserInventory.contains(Something3)) {
-                            break;
-                        }
-                        
-                    case "8":
-                        if (UserInventory.contains(Something4)) {
+                        if (UserInventory.contains(Dodge_Tonic)) {
                             
                         }
                         
                         break;
+                    case "8":
+                        if (UserInventory.contains(Something5)) {
+                            break;
+                        }
+
                     case "9":
-                        if (UserInventory.contains(Something5)) {
+                        if (UserInventory.contains(Soap)) {
                             break;
                         }
-                        
                     case "10":
-                        if (UserInventory.contains(Something5)) {
-                           break;
-                        }
-
-                    case "11":
-                        if (UserInventory.contains(Something6)) {
+                    // bow
+                        if (UserInventory.contains(Bow)) {
+                            archery(100);
                             break;
                         }
-
                     default:
                         slowPrint("You don't have this item");
                         break;
                 }
+                
 
                 // makes the monster attack after you use a object
                 System.out.println("");
@@ -573,7 +585,7 @@ public class Text_Adventure {
                     }
             }
             else{
-                escape_probability = rand.nextInt( 6);
+                escape_probability = rand.nextInt(4);
                 if (escape_probability <= Player_luck) {
                     slowPrint("You successfully managed to escape.");
                     user_escape = true;
@@ -583,6 +595,10 @@ public class Text_Adventure {
                     slowPrint("The " + Monster.getMonster_name() + " attacked you while you were trying to escape");
                     
                     for (int i = 1; i <= Monster.getAgility(); i++){
+                        
+                        if (i >= 2) {
+                            slowPrint("The monster managed to make another attack due its high agility");
+                        }
                     
                     damage_dealt = Monster.getMinStrength();
                     damage_dealt += rand.nextInt(Monster.getMaxStrength() - Monster.getMinStrength());
@@ -612,11 +628,13 @@ public class Text_Adventure {
             
         }while (user_escape == false && monster_Health != 0);
         user_escape = false;
-      
-        scan.close();
+        
+       
 
         return Player_Health;
     }
+
+    //! ------------------------------------------------------------------------------------------
 
     public static void idle(String name, int Player_Health, int agility, int Player_luck, int Player_Strength, int Player_coins){
         File gui = new File("gui.txt");
@@ -642,6 +660,8 @@ public class Text_Adventure {
         }
     }
 
+    //! ------------------------------------------------------------------------------------------
+
     public static void damage(String name, int Player_Health, int agility, int Player_luck, int Player_Strength, int Player_coins){
         File gui = new File("gui.txt");
         try {
@@ -665,6 +685,8 @@ public class Text_Adventure {
             e.printStackTrace();
         }
     }
+
+    //! ------------------------------------------------------------------------------------------
 
     public static void start_screen(){
         File gui = new File("gui.txt");
@@ -692,8 +714,68 @@ public class Text_Adventure {
             e.printStackTrace();
         }
     }
+    
+    //! ------------------------------------------------------------------------------------------
 
+    public static void village(){
+        File gui = new File("gui.txt");
+        try {
+            FileWriter writer = new FileWriter(gui, true);
+            writer.write("                                     _ \n");
+            writer.write("                                    / \\ \n");
+            writer.write(" _____        ______   ____________/ o \\/\\_________    ___________\n");
+            writer.write("|o o o|_______|    |___|               | | # # #  |____|o o o o  |  /\\ \n");
+            writer.write("|o o o|  * * *|: ::|. .|               |o| # # #  |. . |o o o o  | //\\\\ \n");
+            writer.write("|o o o|* * *  |::  |. .| []  []  []  []|o| # # #  |. . |o o o o  | ((|))\n");
+            writer.write("|o o o|**  ** |:  :|. .| []  []  []    |o| # # #  |. . |o o o o  | ((|))\n");
+            writer.write("|_[]__|__[]___|_||_|__<|____________;;_|_|___/\\___|_.|_|____[]___|   |\n");
+            writer.write("-----------------------------------------------------------------------\n");
+            writer.write("  .          '      .     '      .          '       .     '     .      \n");
+            writer.write("-----------------------------------------------------------------------\n");
+            writer.write("\n");
+            writer.close();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    //! ------------------------------------------------------------------------------------------
+
+    public static void dungeons(){
+        File gui = new File("gui.txt");
+        try {
+            FileWriter writer = new FileWriter(gui, true);
+            writer.write("     __________________________________________________________  \n");
+            writer.write("   / |     -_-                                             _-  |\\ \n"); 
+            writer.write("  /  |_-_- _                                         -_- _-   -| \\ \n");   
+            writer.write(" |   |                            _-  _--                      | \n");
+            writer.write(" |   |                                                         |\n");
+            writer.write(" |   |      .-'````````'.                   .-'||`````'-.      |\n");
+            writer.write(" |   |    .` |           `.               .;|  ||       `.    |     \n");     
+            writer.write(" |   |   /   |             \\             / ||  ||           \\   |\n");
+            writer.write(" |   |  |    |              |     _-    |  ||  ||           |  |\n");
+            writer.write(" |   |  |    |              |           |  ||  ||           |  |\n");
+            writer.write(" |   |  |    |              |           |  ||  ||           |  |\n");
+            writer.write(" |   |  |    |              |           |  ||  ||   ||      |  |\n");
+            writer.write(" |   |  |    |______________|           |  ||  ||   ||      |  |  \n");
+            writer.write(" |   |  |   /  __     -     |           |  ||  ||   ||      |  |\n");
+            writer.write(" |   |  |  / __            -|        -  |  ||  ||   ||     |  |\n");
+            writer.write(" |   |  | /        __-- _   |   _- _ -  |  ||  ||   ||      |  |\n");
+            writer.write(" |   |__|/__________________|___________|__\\/__\\/___\\/__\\/__|__|\n");
+            writer.write(" |  /                                             _ -           \\ \n"); 
+            writer.write(" | /   -_- _ -             _- _---                       -_-  -_ \\ \n");
+            writer.write(" |/_______________________________________________________________\\ \n");
+            
+            writer.write("\n");
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //! ------------------------------------------------------------------------------------------
 
     public static void main(String[] args) throws Exception{
         // archery();
@@ -737,16 +819,16 @@ public class Text_Adventure {
         InventoryObject Medium_Health_Potion = new InventoryObject("Medium Healing Potion", "1", 20 );
         InventoryObject Big_Health_Potion = new InventoryObject("Big Healing Potion", "2", 30 );
         InventoryObject Strength_token = new InventoryObject("Strength Token", "3", 30 );
-        InventoryObject Bow = new InventoryObject("Bow", "4", 10 );
-        InventoryObject SpeedPotion = new InventoryObject("Speed Potion", "5", 10 );
-        InventoryObject Mysterious_Potion = new InventoryObject("Mysterious Potion", "6", 10 );
-        InventoryObject Something3 = new InventoryObject("Something3", "7", 10 );
-        InventoryObject Something4 = new InventoryObject("Something4", "8", 10 );
-        InventoryObject Something5 = new InventoryObject("Something5", "9", 10 );
-        InventoryObject Something6 = new InventoryObject("Something6", "10", 10 );
+        InventoryObject Speedy_Pills = new InventoryObject("Speedy Pills", "4", 20 );
+        InventoryObject Mysterious_Potion = new InventoryObject("Mysterious Potion", "5", 15 );
+        InventoryObject Lucky_Clover = new InventoryObject("Lucky Clover", "6", 25 );
+        InventoryObject Dodge_Tonic = new InventoryObject("Dodge Tonic", "7", 15 );
+        InventoryObject Something5 = new InventoryObject("Something5", "8", 10 );
+        InventoryObject Soap = new InventoryObject("Soap", "9", 5 );
+        InventoryObject Bow = new InventoryObject("Bow", "10", 25 );
         
         // a list with all the objects
-        ArrayList<InventoryObject> AllObjects = new ArrayList<>(Arrays.asList(Small_Health_Potion,Medium_Health_Potion,Big_Health_Potion,Strength_token,Bow,SpeedPotion,Mysterious_Potion,Something3,Something4,Something5,Something6));
+        ArrayList<InventoryObject> AllObjects = new ArrayList<>(Arrays.asList(Small_Health_Potion,Medium_Health_Potion,Big_Health_Potion,Strength_token,Bow,Speedy_Pills,Mysterious_Potion,Lucky_Clover,Dodge_Tonic,Something5,Soap));
         // a list with all the objects the user have
         List<InventoryObject> UserInventory = new ArrayList<>();
 
@@ -754,7 +836,7 @@ public class Text_Adventure {
         // A code to test the shop function
 
         // Player_coins += 40;
-        // Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, Strength_token, Bow, SpeedPotion, Mysterious_Potion, Something3, Something4, Something5, Something6, Player_coins);
+        // Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, Strength_token, Bow, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Something5, Soap, Player_coins);
         // for (int i = 0; i < UserInventory.size(); i++) {
         //     slowPrint("[" + UserInventory.get(i).getidentification_number() + "] " + UserInventory.get(i).getobject_name());
         // }
@@ -762,12 +844,14 @@ public class Text_Adventure {
 
         try {
             deletefile(gui);
-            start_screen();
+            //start_screen();
+            //village();
+            dungeons();
             
 
             slowPrint("You wake up in a cabin in the middle of the woods, your head is ");
             slowPrint("bleeding and a man is treating your wounds.");
-            slowPrint("The man says in a raspy voice:  'You recieved quite a beating in");
+            slowPrint("The man says in a raspy voice: 'You recieved quite a beating in");
             slowPrint("those woods young one, what may your name be?");
             System.out.println("");
             System.out.print("Your name: ");
@@ -791,55 +875,59 @@ public class Text_Adventure {
             slowPrint("You slowly walk through the forest when you encounter a leaf monster");
             
             // first monster
-            Player_Health = battle_system(Leaf_Monster, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  SpeedPotion,  Mysterious_Potion,  Something3,  Something4,  Something5,  Something6);
-            Player_coins += Leaf_Monster.getHealth()*2;
+            Player_Health = battle_system(Leaf_Monster, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Something5,  Soap);
+            Player_coins += (int)Leaf_Monster.getHealth()/2;
 
         
             slowPrint("After the encounter with the Leaf Monster " + name + " found himself infront of a");
             slowPrint("savage wolf who came due to the commotion caused by your battle.");
             // second monster
-            Player_Health = battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  SpeedPotion,  Mysterious_Potion,  Something3,  Something4,  Something5,  Something6);
-            Player_coins += Wolf.getHealth()*2;
+            Player_Health = battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Something5,  Soap);
+            Player_coins += (int)Wolf.getHealth()/2;
 
             slowPrint("After what happened with the wolf, extremely tired, you decided to take a nap...");
             
             try{
                 deletefile(gui);
                 sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
-                Thread.sleep(1500);
+                Thread.sleep(3000);
                 deletefile(gui);
                 idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
             }catch(Exception e){
                 System.out.println(e);
             }
-            slowPrint("You suddently woke up hearing some screams in the middle of the now completely dark forest.");
+            slowPrint("You suddently woke up hearing screams in the middle of the now completely dark forest.");
 
             slowPrint("Do you: [1] Go to investigate, [2] Continue sleeping");
             String choice = scan.nextLine();
             System.out.println("");
+            clear();
 
             while (!choice.strip().toLowerCase().equals("investigate") && !choice.strip().toLowerCase().equals("sleeping") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")&& !choice.strip().toLowerCase().equals("sleep")&& !choice.strip().toLowerCase().equals("continuesleeping")) {
                 slowPrint("You need to choose either to escape or to fight");
-                choice = scan.nextLine();
                 System.out.println("");
+                slowPrint("Do you: [1] Go to investigate, [2] Continue sleeping");
+                choice = scan.nextLine();
+                clear();
             }
 
             if (choice.strip().toLowerCase().equals("1") || choice.strip().toLowerCase().equals("investigate")){
                 slowPrint("You find a Mud Golem Attacking the man that saved you earlier");
-            Player_Health = battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  SpeedPotion,  Mysterious_Potion,  Something3,  Something4,  Something5,  Something6);
-                Player_coins += Mud_Golem.getHealth()*2;
-                slowPrint(" The man who was almoust killed decides to give you a iron sword in gratitude. ");
-                slowPrint("after that match with the golem the sun rise and you decide to continue your quest ");
+            Player_Health = battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Something5,  Soap);
+                Player_coins += (int)Mud_Golem.getHealth()/2;
+                slowPrint("The man who was almoust killed decides to give you a iron sword in gratitude. ");
+                slowPrint("After that match with the golem the sun rise and you decide to continue your quest ");
                 
             }
             else{
                 
-                slowPrint("you continue sleeping until the sun rise and continue your quest");
+                slowPrint("You continue sleeping until sun rise and continue your quest");
             }
-Thread.sleep(2000);
+        Thread.sleep(2000);
+        System.out.println("");
         slowPrint("During your adventure you found a village so you decide to stay for a moment");
-        slowPrint("when you arrive to the village you see a items shop");
-        System.out.println("you do: [1]enter , [2]ignore ");
+        slowPrint("when you arrive to the village you see an items shop");
+        System.out.println("Do you: [1] Enter , [2] Ignore ");
         choice = scan.nextLine();
         while (!choice.strip().toLowerCase().equals("enter") && !choice.strip().toLowerCase().equals("ignore") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
                 slowPrint("You need to choose either to enter or ignore the shop");
@@ -847,18 +935,18 @@ Thread.sleep(2000);
                 System.out.println("");
             }
         if(choice.strip().toLowerCase().equals("enter")||choice.strip().toLowerCase().equals("1") ){
-        Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, Strength_token, Bow, SpeedPotion, Mysterious_Potion, Something3, Something4, Something5, Something6, Player_coins);
-        slowPrint("you get outsite the shop and continue your quest ");
-    } 
-else{
-    slowPrint("you decide to keep walking in the village");
-}
-        slowPrint("then a villager saw your sword and talk to you ");
-        slowPrint("traveler some bandits were atackin our village but we dont have any warrior in the village can you take care of those bandits for us");
+        Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, Strength_token, Bow, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Something5, Soap, Player_coins);
+        slowPrint("You get outsite the shop and continue your quest ");
+        } 
+        else{
+            slowPrint("You decide to keep walking in the village");
+        }
+        slowPrint("Then a villager saw your sword and talk to you ");
+        slowPrint("Traveler some bandits were atackin our village but we dont have any warrior in the village can you take care of those bandits for us");
         Thread.sleep(1500);
-        System.out.println("you do: [1]accept , [2]refuse ");
+        System.out.println("Do you: [1] Accept, [2] Refuse ");
         choice = scan.nextLine();
- while (!choice.strip().toLowerCase().equals("accept") && !choice.strip().toLowerCase().equals("refuse") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
+        while (!choice.strip().toLowerCase().equals("accept") && !choice.strip().toLowerCase().equals("refuse") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
                 slowPrint("You need to choose either to accept or refuse the request");
                 choice = scan.nextLine();
                 System.out.println("");
@@ -885,10 +973,5 @@ else{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //! !!!VERY IMPORTANT!!!
-        scan.close();
-        
-        //! !!!DO NOT DELETE EVERY!!!
     }
 }
