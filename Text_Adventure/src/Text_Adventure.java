@@ -1,6 +1,6 @@
 //! Carlos STATUS -- no
-// * Ethan STATUS -- si
-//? Sebastian STATUS -- CHAMBEANDO
+// * Ethan STATUS -- no
+//? Sebastian STATUS -- no
 
 
 import java.io.File;
@@ -156,9 +156,9 @@ public class Text_Adventure {
     // the function for the user to buy objects
 
     public static int shop(ArrayList<InventoryObject> AllObjects,List<InventoryObject> UserInventory, InventoryObject Small_Health_Potion, 
-    InventoryObject Medium_Health_Potion, InventoryObject Big_Health_Potion, InventoryObject Strength_token, InventoryObject Bow, 
+    InventoryObject Medium_Health_Potion, InventoryObject Big_Health_Potion, InventoryObject Strength_token,
     InventoryObject Speedy_Pills, InventoryObject Mysterious_Potion, InventoryObject Lucky_Clover, InventoryObject Dodge_Tonic, 
-    InventoryObject Something5, InventoryObject Soap, int Player_coins){
+    InventoryObject Something5, InventoryObject Soap, InventoryObject Bow, int Player_coins){
 
         Scanner scan = new Scanner(System.in);
         boolean While = true;
@@ -751,17 +751,17 @@ public class Text_Adventure {
             writer.write("  /  |_-_- _                                         -_- _-   -| \\ \n");   
             writer.write(" |   |                            _-  _--                      | \n");
             writer.write(" |   |                                                         |\n");
-            writer.write(" |   |      .-'````````'.                   .-'||`````'-.      |\n");
-            writer.write(" |   |    .` |           `.               .;|  ||       `.    |     \n");     
-            writer.write(" |   |   /   |             \\             / ||  ||           \\   |\n");
-            writer.write(" |   |  |    |              |     _-    |  ||  ||           |  |\n");
-            writer.write(" |   |  |    |              |           |  ||  ||           |  |\n");
-            writer.write(" |   |  |    |              |           |  ||  ||           |  |\n");
-            writer.write(" |   |  |    |              |           |  ||  ||   ||      |  |\n");
-            writer.write(" |   |  |    |______________|           |  ||  ||   ||      |  |  \n");
-            writer.write(" |   |  |   /  __     -     |           |  ||  ||   ||      |  |\n");
-            writer.write(" |   |  |  / __            -|        -  |  ||  ||   ||     |  |\n");
-            writer.write(" |   |  | /        __-- _   |   _- _ -  |  ||  ||   ||      |  |\n");
+            writer.write(" |   |      .-'````````'.                   .-'||```||'-.      |\n");
+            writer.write(" |   |    .` |           `.               .;|  ||   ||  ||.    |     \n");     
+            writer.write(" |   |   /   |             \\             / ||  ||   ||  || \\   |\n");
+            writer.write(" |   |  |    |              |     _-    |  ||  ||   ||  ||  |  |\n");
+            writer.write(" |   |  |    |              |           |  ||  ||   ||  ||  |  |\n");
+            writer.write(" |   |  |    |              |           |  ||  ||   ||  ||  |  |\n");
+            writer.write(" |   |  |    |              |           |  ||  ||   ||  ||  |  |\n");
+            writer.write(" |   |  |    |______________|           |__||__||___||__||__|  |  \n");
+            writer.write(" |   |  |   /  __     -     |           |  ||  ||   ||  ||  |  |\n");
+            writer.write(" |   |  |  / __            -|        -  |  ||  ||   ||  ||  |  |\n");
+            writer.write(" |   |  | /        __-- _   |   _- _ -  |  ||  ||   ||  ||  |  |\n");
             writer.write(" |   |__|/__________________|___________|__\\/__\\/___\\/__\\/__|__|\n");
             writer.write(" |  /                                             _ -           \\ \n"); 
             writer.write(" | /   -_- _ -             _- _---                       -_-  -_ \\ \n");
@@ -844,10 +844,7 @@ public class Text_Adventure {
 
         try {
             deletefile(gui);
-            //start_screen();
-            //village();
-            dungeons();
-            
+            start_screen();
 
             slowPrint("You wake up in a cabin in the middle of the woods, your head is ");
             slowPrint("bleeding and a man is treating your wounds.");
@@ -879,8 +876,8 @@ public class Text_Adventure {
             Player_coins += (int)Leaf_Monster.getHealth()/2;
 
         
-            slowPrint("After the encounter with the Leaf Monster " + name + " found himself infront of a");
-            slowPrint("savage wolf who came due to the commotion caused by your battle.");
+            slowPrint("After the encounter with the Leaf Monster " + name + " found himself infront");
+            slowPrint("of a savage wolf who came due to the commotion caused by your battle.");
             // second monster
             Player_Health = battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Something5,  Soap);
             Player_coins += (int)Wolf.getHealth()/2;
@@ -890,8 +887,9 @@ public class Text_Adventure {
             try{
                 deletefile(gui);
                 sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
-                Thread.sleep(3000);
+                Thread.sleep(4000);
                 deletefile(gui);
+                clear();
                 idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
             }catch(Exception e){
                 System.out.println(e);
@@ -912,37 +910,49 @@ public class Text_Adventure {
             }
 
             if (choice.strip().toLowerCase().equals("1") || choice.strip().toLowerCase().equals("investigate")){
-                slowPrint("You find a Mud Golem Attacking the man that saved you earlier");
-            Player_Health = battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Something5,  Soap);
+                slowPrint("You find a Mud Golem attacking the man that saved you earlier");
+                Player_Health = battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Something5,  Soap);
                 Player_coins += (int)Mud_Golem.getHealth()/2;
+                System.out.println(Mud_Golem.getHealth());
                 slowPrint("The man who was almoust killed decides to give you a iron sword in gratitude. ");
-                slowPrint("After that match with the golem the sun rise and you decide to continue your quest ");
-                
+                slowPrint("After that match with the golem, you continue sleeping ");
+                deletefile(gui);
+                sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
+                slowPrint("until sun rise and continue your quest.");
             }
             else{
-                
-                slowPrint("You continue sleeping until sun rise and continue your quest");
+                deletefile(gui);
+                sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
+                slowPrint("You continue sleeping until sun rise and continue your quest.");
             }
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         System.out.println("");
-        slowPrint("During your adventure you found a village so you decide to stay for a moment");
-        slowPrint("when you arrive to the village you see an items shop");
-        System.out.println("Do you: [1] Enter , [2] Ignore ");
+        deletefile(gui);
+        village();
+        clear();
+        slowPrint("During your adventure you found a village so you decide to stay for a moment.");
+        slowPrint("When you arrive to the village you see an items shop.");
+        System.out.println("Do you: [1] Enter, [2] Ignore ");
         choice = scan.nextLine();
         while (!choice.strip().toLowerCase().equals("enter") && !choice.strip().toLowerCase().equals("ignore") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
+                clear();
                 slowPrint("You need to choose either to enter or ignore the shop");
-                choice = scan.nextLine();
                 System.out.println("");
+                System.out.println("Do you: [1] Enter, [2] Ignore ");
+                choice = scan.nextLine();
             }
+
         if(choice.strip().toLowerCase().equals("enter")||choice.strip().toLowerCase().equals("1") ){
-        Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, Strength_token, Bow, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Something5, Soap, Player_coins);
-        slowPrint("You get outsite the shop and continue your quest ");
+            clear();
+            Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, Strength_token, Bow, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Something5, Soap, Player_coins);
+            slowPrint("You get outsite the shop and continue your quest ");
         } 
         else{
             slowPrint("You decide to keep walking in the village");
         }
         slowPrint("Then a villager saw your sword and talk to you ");
-        slowPrint("Traveler some bandits were atackin our village but we dont have any warrior in the village can you take care of those bandits for us");
+        slowPrint("Traveler some bandits were atackin our village but we dont have any warrior in the ");
+        slowPrint("village can you take care of those bandits for us");
         Thread.sleep(1500);
         System.out.println("Do you: [1] Accept, [2] Refuse ");
         choice = scan.nextLine();
