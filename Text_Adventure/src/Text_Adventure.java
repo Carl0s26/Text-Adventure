@@ -154,12 +154,13 @@ public class Text_Adventure {
     //! ------------------------------------------------------------------------------------------
 
     // the function for the user to buy objects
-
+    
     public static int shop(ArrayList<InventoryObject> AllObjects,List<InventoryObject> UserInventory, InventoryObject Small_Health_Potion, 
     InventoryObject Medium_Health_Potion, InventoryObject Big_Health_Potion, InventoryObject Strength_token,
     InventoryObject Speedy_Pills, InventoryObject Mysterious_Potion, InventoryObject Lucky_Clover, InventoryObject Dodge_Tonic, 
-    InventoryObject Something5, InventoryObject Soap, InventoryObject Bow, int Player_coins){
+    InventoryObject Cactus_Sword, InventoryObject Soap, InventoryObject Bow, int Player_coins){
 
+        String buyer_Choice = ""; 
         Scanner scan = new Scanner(System.in);
         boolean While = true;
         slowPrint("Hello fellow traveler");
@@ -213,16 +214,6 @@ public class Text_Adventure {
                 }
                 break;
             case "4":
-                if (Player_coins >= Bow.getprize()) {
-                    Player_coins -= Bow.getprize();
-                    UserInventory.add(Bow);
-                    slowPrint("You succesfully bougth a " + Bow.getobject_name());
-                }
-                else{
-                    slowPrint("You don't have enougth coins");
-                }
-                break;
-            case "5":
                 if (Player_coins >= Speedy_Pills.getprize()) {
                     Player_coins -= Speedy_Pills.getprize();
                     UserInventory.add(Speedy_Pills);
@@ -232,7 +223,8 @@ public class Text_Adventure {
                     slowPrint("You don't have enougth coins");
                 }
                 break;
-            case "6":
+            case "5":
+                
                 if (Player_coins >= Mysterious_Potion.getprize()) {
                     Player_coins -= Mysterious_Potion.getprize();
                     UserInventory.add(Mysterious_Potion);
@@ -242,7 +234,8 @@ public class Text_Adventure {
                     slowPrint("You don't have enougth coins");
                 }
                 break;
-            case "7":
+            case "6":
+                
                 if (Player_coins >= Lucky_Clover.getprize()) {
                     Player_coins -= Lucky_Clover.getprize();
                     UserInventory.add(Lucky_Clover);
@@ -252,7 +245,8 @@ public class Text_Adventure {
                     slowPrint("You don't have enougth coins");
                 }
                 break;
-            case "8":
+            case "7":
+                
                 if (Player_coins >= Dodge_Tonic.getprize()) {
                     Player_coins -= Dodge_Tonic.getprize();
                     UserInventory.add(Dodge_Tonic);
@@ -262,17 +256,19 @@ public class Text_Adventure {
                     slowPrint("You don't have enougth coins");
                 }
                 break;
-            case "9":
-                if (Player_coins >= Something5.getprize()) {
-                    Player_coins -= Something5.getprize();
-                    UserInventory.add(Something5);
-                    slowPrint("You succesfully bougth a " + Something5.getobject_name());
+            case "8":
+                
+                if (Player_coins >= Cactus_Sword.getprize()) {
+                    Player_coins -= Cactus_Sword.getprize();
+                    UserInventory.add(Cactus_Sword);
+                    slowPrint("You succesfully bougth a " + Cactus_Sword.getobject_name());
                 }
                 else{
                     slowPrint("You don't have enougth coins");
                 }
                 break;
-            case "10":
+            case "9":
+                
                 if (Player_coins >= Soap.getprize()) {
                     Player_coins -= Soap.getprize();
                     UserInventory.add(Soap);
@@ -282,16 +278,290 @@ public class Text_Adventure {
                     slowPrint("You don't have enougth coins");
                 }
                 break;
+            case "10":
+                
+                if (Player_coins >= Bow.getprize()) {
+                    Player_coins -= Bow.getprize();
+                    UserInventory.add(Bow);
+                    slowPrint("You succesfully bougth a " + Bow.getobject_name());
+                }
+                else{
+                    slowPrint("You don't have enougth coins");
+                }
+                break;
+            case "0?":
+                slowPrint("Increases health by: ");
+                System.out.println("Would you like to buy it?");
+                buyer_Choice = scan.nextLine(); 
+                if (buyer_Choice.strip().toLowerCase().equals("yes") || buyer_Choice.strip().toLowerCase().equals("y")) {
+                    if (Player_coins >= Small_Health_Potion.getprize()) {
+                    Player_coins -= Small_Health_Potion.getprize();
+                    UserInventory.add(Small_Health_Potion);
+                    clear();
+                    slowPrint("You succesfully bougth a " + Small_Health_Potion.getobject_name());
+                    }
+                    else{
+                    slowPrint("You don't have enougth coins");
+                    }
+                }
+                else if (buyer_Choice.strip().toLowerCase().equals("no") || buyer_Choice.strip().toLowerCase().equals("n")) {
+                   System.out.println("Would you like to buy something else?"); 
+                }
+                else{
+                    System.out.println("You should answer the previous question with a yes or no.");
+                }
+                break;
+            case "1?":
+                slowPrint("Increases health by: ");
+                System.out.println("Would you like to buy it?");
+                buyer_Choice = scan.nextLine(); 
+                if (buyer_Choice.strip().toLowerCase().equals("yes") || buyer_Choice.strip().toLowerCase().equals("y")) {
+                    if (Player_coins >= Medium_Health_Potion.getprize()) {
+                    Player_coins -= Medium_Health_Potion.getprize();
+                    UserInventory.add(Medium_Health_Potion);
+                    clear();
+                    slowPrint("You succesfully bougth a " + Medium_Health_Potion.getobject_name());
+                    }
+                    else{
+                    slowPrint("You don't have enougth coins");
+                    }
+                }
+                else if (buyer_Choice.strip().toLowerCase().equals("no") || buyer_Choice.strip().toLowerCase().equals("n")) {
+                   System.out.println("Would you like to buy something else?"); 
+                }
+                else{
+                    System.out.println("You should answer the previous question with a yes or no.");
+                }
+                
+                break;
+            case "2?":
+                slowPrint("Increases health by: ");
+                System.out.println("Would you like to buy it?");
+                buyer_Choice = scan.nextLine(); 
+                if (buyer_Choice.strip().toLowerCase().equals("yes") || buyer_Choice.strip().toLowerCase().equals("y")) {
+                    if (Player_coins >= Big_Health_Potion.getprize()) {
+                    Player_coins -= Big_Health_Potion.getprize();
+                    UserInventory.add(Big_Health_Potion);
+                    clear();
+                    slowPrint("You succesfully bougth a " + Big_Health_Potion.getobject_name());
+                    }
+                    else{
+                    slowPrint("You don't have enougth coins");
+                    }
+                }
+                else if (buyer_Choice.strip().toLowerCase().equals("no") || buyer_Choice.strip().toLowerCase().equals("n")) {
+                   System.out.println("Would you like to buy something else?"); 
+                }
+                else{
+                    System.out.println("You should answer the previous question with a yes or no.");
+                }
+                
+                break;
+            case "3?":
+                slowPrint("Protein packed token with the power of 1000 men");
+                slowPrint("Increases strength by 1 point");
+                System.out.println("Would you like to buy it?");
+                buyer_Choice = scan.nextLine(); 
+                if (buyer_Choice.strip().toLowerCase().equals("yes") || buyer_Choice.strip().toLowerCase().equals("y")) {
+                    if (Player_coins >= Strength_token.getprize()) {
+                    Player_coins -= Strength_token.getprize();
+                    UserInventory.add(Strength_token);
+                    clear();
+                    slowPrint("You succesfully bougth a " + Strength_token.getobject_name());
+                    }
+                    else{
+                        slowPrint("You don't have enougth coins");
+                    }
+                }
+                else if (buyer_Choice.strip().toLowerCase().equals("no") || buyer_Choice.strip().toLowerCase().equals("n")) {
+                   System.out.println("Would you like to buy something else?"); 
+                }
+                else{
+                    System.out.println("You should answer the previous question with a yes or no.");
+                }
+                
+                break;
+            case "4?":
+                slowPrint("Sugar filled pills with the rush of the fastest rabbit.");
+                slowPrint("Increases agility by 1 point");
+                System.out.println("Would you like to buy it?");
+                buyer_Choice = scan.nextLine(); 
+                if (buyer_Choice.strip().toLowerCase().equals("yes") || buyer_Choice.strip().toLowerCase().equals("y")) {
+                    if (Player_coins >= Speedy_Pills.getprize()) {
+                    Player_coins -= Speedy_Pills.getprize();
+                    UserInventory.add(Speedy_Pills);
+                    clear();
+                    slowPrint("You succesfully bougth a " + Speedy_Pills.getobject_name());
+                    }
+                    else{
+                        slowPrint("You don't have enougth coins");
+                    }
+                }
+                else if (buyer_Choice.strip().toLowerCase().equals("no") || buyer_Choice.strip().toLowerCase().equals("n")) {
+                   System.out.println("Would you like to buy something else?"); 
+                }
+                else{
+                    System.out.println("You should answer the previous question with a yes or no.");
+                }
+                
+                break;
+            case "5?":
+                
+                slowPrint("???");
+                System.out.println("Would you like to buy it?");
+                buyer_Choice = scan.nextLine(); 
+                if (buyer_Choice.strip().toLowerCase().equals("yes") || buyer_Choice.strip().toLowerCase().equals("y")) {
+                    if (Player_coins >= Mysterious_Potion.getprize()) {
+                    Player_coins -= Mysterious_Potion.getprize();
+                    UserInventory.add(Mysterious_Potion);
+                    clear();
+                    slowPrint("You succesfully bougth a " + Mysterious_Potion.getobject_name());
+                    }
+                    else{
+                        slowPrint("You don't have enougth coins");
+                    }
+                }
+                else if (buyer_Choice.strip().toLowerCase().equals("no") || buyer_Choice.strip().toLowerCase().equals("n")) {
+                   System.out.println("Would you like to buy something else?"); 
+                }
+                else{
+                    System.out.println("You should answer the previous question with a yes or no.");
+                }
+                
+                break;
+            case "6?":
+                
+                slowPrint("A clover picked from the widest field");
+                slowPrint("Increases your luck by 1 point.");
+                System.out.println("Would you like to buy it?");
+                buyer_Choice = scan.nextLine(); 
+                if (buyer_Choice.strip().toLowerCase().equals("yes") || buyer_Choice.strip().toLowerCase().equals("y")) {
+                    if (Player_coins >= Lucky_Clover.getprize()) {
+                    Player_coins -= Lucky_Clover.getprize();
+                    UserInventory.add(Lucky_Clover);
+                    clear();
+                    slowPrint("You succesfully bougth a " + Lucky_Clover.getobject_name());
+                    }
+                    else{
+                        slowPrint("You don't have enougth coins");
+                    }
+                }
+                else if (buyer_Choice.strip().toLowerCase().equals("no") || buyer_Choice.strip().toLowerCase().equals("n")) {
+                   System.out.println("Would you like to buy something else?"); 
+                }
+                else{
+                    System.out.println("You should answer the previous question with a yes or no.");
+                }
+                
+                break;
+            case "7?":
+                
+                slowPrint("A powerfull tonic with the ability to dodge attacks.");
+                slowPrint("You will be able to dodge 3 attacks");
+                System.out.println("Would you like to buy it?");
+                buyer_Choice = scan.nextLine(); 
+                if (buyer_Choice.strip().toLowerCase().equals("yes") || buyer_Choice.strip().toLowerCase().equals("y")) {
+                    if (Player_coins >= Dodge_Tonic.getprize()) {
+                    Player_coins -= Dodge_Tonic.getprize();
+                    UserInventory.add(Dodge_Tonic);
+                    clear();
+                    slowPrint("You succesfully bougth a " + Dodge_Tonic.getobject_name());
+                    }
+                    else{
+                        slowPrint("You don't have enougth coins");
+                    }
+                }
+                else if (buyer_Choice.strip().toLowerCase().equals("no") || buyer_Choice.strip().toLowerCase().equals("n")) {
+                   System.out.println("Would you like to buy something else?"); 
+                }
+                else{
+                    System.out.println("You should answer the previous question with a yes or no.");
+                }
+                
+                break;
+            case "8?":
+                
+                slowPrint("A sword carved from the inside of a cactus lies with its own spikes");
+                slowPrint(" BUYER BE WARE: Sword can cause damage to yourself");
+                System.out.println("Would you like to buy it?");
+                buyer_Choice = scan.nextLine(); 
+                if (buyer_Choice.strip().toLowerCase().equals("yes") || buyer_Choice.strip().toLowerCase().equals("y")) {
+                    if (Player_coins >= Cactus_Sword.getprize()) {
+                    Player_coins -= Cactus_Sword.getprize();
+                    UserInventory.add(Cactus_Sword);
+                    clear();
+                    slowPrint("You succesfully bougth a " + Cactus_Sword.getobject_name());
+                    }
+                    else{
+                        slowPrint("You don't have enougth coins");
+                    }
+                }
+                else if (buyer_Choice.strip().toLowerCase().equals("no") || buyer_Choice.strip().toLowerCase().equals("n")) {
+                   System.out.println("Would you like to buy something else?"); 
+                }
+                else{
+                    System.out.println("You should answer the previous question with a yes or no.");
+                }
+                
+                break;
+            case "9?":
+                
+                System.out.println("Premium soap made with higth cuality pig fat.");
+                System.out.println("Would you like to buy it?");
+                buyer_Choice = scan.nextLine(); 
+                if (buyer_Choice.strip().toLowerCase().equals("yes") || buyer_Choice.strip().toLowerCase().equals("y")) {
+                    if (Player_coins >= Soap.getprize()) {
+                        Player_coins -= Soap.getprize();
+                        UserInventory.add(Soap);
+                        clear();
+                        slowPrint("You succesfully bougth a " + Soap.getobject_name());
+                    }
+                    else{
+                        slowPrint("You don't have enougth coins");
+                    }
+                }
+                else if (buyer_Choice.strip().toLowerCase().equals("no") || buyer_Choice.strip().toLowerCase().equals("n")) {
+                   System.out.println("Would you like to buy something else?"); 
+                }
+                else{
+                    System.out.println("You should answer the previous question with a yes or no.");
+                }
+                
+                break;
+            case "10?":
+                
+                slowPrint("Hard wood, with the finnest silk in all the land");
+                slowPrint("Unlocks bow weapon");
+                if (buyer_Choice.strip().toLowerCase().equals("yes") || buyer_Choice.strip().toLowerCase().equals("y")) {
+                    if (Player_coins >= Bow.getprize()) {
+                    Player_coins -= Bow.getprize();
+                    UserInventory.add(Bow);
+                    clear();
+                    slowPrint("You succesfully bougth a " + Bow.getobject_name());
+                    }
+                    else{
+                    slowPrint("You don't have enougth coins");
+                    }
+                }
+                else if (buyer_Choice.strip().toLowerCase().equals("no") || buyer_Choice.strip().toLowerCase().equals("n")) {
+                   System.out.println("Would you like to buy something else?"); 
+                }
+                else{
+                    System.out.println("You should answer the previous question with a yes or no.");
+                }
+                
+                
+                break;
             case "esc":
-                System.out.println("Thanks for shooping with us");
+                System.out.println("Thank you for shooping with us");
                 While = false;
                 break;
             case "11":
-                System.out.println("Thanks for shooping with us");
+                System.out.println("Thank you for shooping with us");
                 While = false;
                 break;
             case "exit":
-                System.out.println("Thanks for shooping with us");
+                System.out.println("Thank you for shooping with us");
                 While = false;
                 break;
             
@@ -362,7 +632,7 @@ public class Text_Adventure {
     public static int battle_system(Foes Monster, int Player_Health, int agility,  int Player_Strength, int Player_luck, int Player_coins, 
     String name, boolean user_escape, List<InventoryObject> UserInventory, InventoryObject Small_Health_Potion, 
     InventoryObject Medium_Health_Potion, InventoryObject Big_Health_Potion, InventoryObject Strength_token, InventoryObject Bow, 
-    InventoryObject Speedy_Pills, InventoryObject Mysterious_Potion, InventoryObject Lucky_Clover, InventoryObject Dodge_Tonic, InventoryObject Something5, 
+    InventoryObject Speedy_Pills, InventoryObject Mysterious_Potion, InventoryObject Lucky_Clover, InventoryObject Dodge_Tonic, InventoryObject Cactus_Sword, 
     InventoryObject Soap){
 
             int monster_Health = Monster.getHealth();
@@ -532,7 +802,7 @@ public class Text_Adventure {
                         
                         break;
                     case "8":
-                        if (UserInventory.contains(Something5)) {
+                        if (UserInventory.contains(Cactus_Sword)) {
                             break;
                         }
 
@@ -796,6 +1066,8 @@ public class Text_Adventure {
         int agility = 1;
         int Player_luck = 0;
         int damage_dealt = 0;
+        String Sword_status = "";
+        
         
         // All monsters Stats
         Foes Leaf_Monster = new Foes("Leaf Monster",1, 3, 2,10);
@@ -823,12 +1095,12 @@ public class Text_Adventure {
         InventoryObject Mysterious_Potion = new InventoryObject("Mysterious Potion", "5", 15 );
         InventoryObject Lucky_Clover = new InventoryObject("Lucky Clover", "6", 25 );
         InventoryObject Dodge_Tonic = new InventoryObject("Dodge Tonic", "7", 15 );
-        InventoryObject Something5 = new InventoryObject("Something5", "8", 10 );
+        InventoryObject Cactus_Sword = new InventoryObject("Cactus Sword", "8", 10 );
         InventoryObject Soap = new InventoryObject("Soap", "9", 5 );
         InventoryObject Bow = new InventoryObject("Bow", "10", 25 );
         
         // a list with all the objects
-        ArrayList<InventoryObject> AllObjects = new ArrayList<>(Arrays.asList(Small_Health_Potion,Medium_Health_Potion,Big_Health_Potion,Strength_token,Bow,Speedy_Pills,Mysterious_Potion,Lucky_Clover,Dodge_Tonic,Something5,Soap));
+        ArrayList<InventoryObject> AllObjects = new ArrayList<>(Arrays.asList(Small_Health_Potion,Medium_Health_Potion,Big_Health_Potion,Strength_token,Speedy_Pills,Mysterious_Potion,Lucky_Clover,Dodge_Tonic,Cactus_Sword,Soap, Bow));
         // a list with all the objects the user have
         List<InventoryObject> UserInventory = new ArrayList<>();
 
@@ -836,13 +1108,15 @@ public class Text_Adventure {
         // A code to test the shop function
 
         // Player_coins += 40;
-        // Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, Strength_token, Bow, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Something5, Soap, Player_coins);
+        // Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, Strength_token, Bow, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Cactus_Sword, Soap, Player_coins);
         // for (int i = 0; i < UserInventory.size(); i++) {
         //     slowPrint("[" + UserInventory.get(i).getidentification_number() + "] " + UserInventory.get(i).getobject_name());
         // }
         // System.out.println("coins " + Player_coins);
 
         try {
+            Player_coins += 200;
+            shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, Strength_token, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Cactus_Sword, Soap, Bow, Player_coins);
             deletefile(gui);
             start_screen();
 
@@ -872,14 +1146,14 @@ public class Text_Adventure {
             slowPrint("You slowly walk through the forest when you encounter a leaf monster");
             
             // first monster
-            Player_Health = battle_system(Leaf_Monster, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Something5,  Soap);
+            Player_Health = battle_system(Leaf_Monster, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap);
             Player_coins += (int)Leaf_Monster.getHealth()/2;
 
-        
+
             slowPrint("After the encounter with the Leaf Monster " + name + " found himself infront");
             slowPrint("of a savage wolf who came due to the commotion caused by your battle.");
             // second monster
-            Player_Health = battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Something5,  Soap);
+            Player_Health = battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap);
             Player_coins += (int)Wolf.getHealth()/2;
 
             slowPrint("After what happened with the wolf, extremely tired, you decided to take a nap...");
@@ -911,14 +1185,14 @@ public class Text_Adventure {
 
             if (choice.strip().toLowerCase().equals("1") || choice.strip().toLowerCase().equals("investigate")){
                 slowPrint("You find a Mud Golem attacking the man that saved you earlier");
-                Player_Health = battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Something5,  Soap);
+                Player_Health = battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap);
                 Player_coins += (int)Mud_Golem.getHealth()/2;
                 System.out.println(Mud_Golem.getHealth());
                 slowPrint("The man who was almoust killed decides to give you a iron sword in gratitude. ");
                 slowPrint("After that match with the golem, you continue sleeping ");
                 deletefile(gui);
                 sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins);
-                slowPrint("until sun rise and continue your quest.");
+                slowPrint("until sun rise and continue your quest.");   
             }
             else{
                 deletefile(gui);
@@ -944,7 +1218,7 @@ public class Text_Adventure {
 
         if(choice.strip().toLowerCase().equals("enter")||choice.strip().toLowerCase().equals("1") ){
             clear();
-            Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, Strength_token, Bow, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Something5, Soap, Player_coins);
+            Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, Strength_token, Bow, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Cactus_Sword, Soap, Player_coins);
             slowPrint("You get outsite the shop and continue your quest ");
         } 
         else{
