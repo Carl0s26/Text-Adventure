@@ -1668,7 +1668,7 @@ public class Text_Adventure {
 
             // varillas lo de abajo explota el codigo :v
 
-            // Weapons.set(2, Sword_status);
+            Weapons.set(0, Sword_status);
             slowPrint("YOUR WOODEN SWORD HAS BEEN UPGRADED TO AN IRON SWORD");
             Player_Strength += 10;
             deletefile(gui);
