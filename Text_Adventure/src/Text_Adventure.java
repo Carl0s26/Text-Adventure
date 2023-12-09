@@ -1,4 +1,4 @@
-//! Carlos STATUS -- no
+//! Carlos STATUS -- chambeando
 // * Ethan STATUS -- no
 //? Sebastian STATUS -- no
 
@@ -1550,18 +1550,20 @@ public class Text_Adventure {
 
 
         // A code to test the shop function
-        Player_coins += 200;
-        String name = scan.nextLine();
-        deletefile(gui);
-        idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
-        clear();
-        Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, 
-        Strength_token, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Cactus_Sword, Soap, Bow, Player_coins, 
-        Weapons, gui, name, Player_Health, agility, Player_luck, Player_Strength, Dodges);
-        for (int i = 0; i < UserInventory.size(); i++) {
-            slowPrint("[" + UserInventory.get(i).getidentification_number() + "] " + UserInventory.get(i).getobject_name());
-        }
-        System.out.println(Weapons);
+
+        // Player_coins += 200;
+        // String name = scan.nextLine();
+        // deletefile(gui);
+        // idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
+        // clear();
+
+        // Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, 
+        // Strength_token, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Cactus_Sword, Soap, Bow, Player_coins, 
+        // Weapons, gui, name, Player_Health, agility, Player_luck, Player_Strength, Dodges);
+        // for (int i = 0; i < UserInventory.size(); i++) {
+        //     slowPrint("[" + UserInventory.get(i).getidentification_number() + "] " + UserInventory.get(i).getobject_name());
+        // }
+        // System.out.println(Weapons);
 
         
         deletefile(gui);
@@ -1573,7 +1575,7 @@ public class Text_Adventure {
         slowPrint("those woods young one, what may your name be?");
         System.out.println("");
         System.out.print("Your name: ");
-        //String name = scan.nextLine();
+        String name = scan.nextLine();
         System.out.println("");
 
         slowPrint(name + "?, huh, thats a nice name");
@@ -1641,9 +1643,9 @@ public class Text_Adventure {
             System.out.println(Mud_Golem.getHealth());
             slowPrint("The man who was almoust killed decides to give you a iron sword in gratitude. ");
 
-            Sword_status = "Wooden";
+            Sword_status = "Iron";
             Weapons.set(2, Sword_status);
-            slowPrint("YOUR WOODEN SWORDHAS BEEN UPGRADED TO AN IRON SWORD");
+            slowPrint("YOUR WOODEN SWORD HAS BEEN UPGRADED TO AN IRON SWORD");
             Player_Strength += 10;
             deletefile(gui);
             idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
