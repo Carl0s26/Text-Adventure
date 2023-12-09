@@ -1,4 +1,4 @@
-//! Carlos STATUS -- chambeando
+//! Carlos STATUS -- no
 // * Ethan STATUS -- no
 //? Sebastian STATUS -- no
 
@@ -974,6 +974,7 @@ public class Text_Adventure {
     //*DONE!!!!!!!!!! (I guess?)
 
     public static int Player_Health;
+    public Integer Player_Strength;
 
 
     //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -982,11 +983,11 @@ public class Text_Adventure {
     //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public static int battle_system(Foes Monster, int Player_Health, int agility,  int Player_Strength, int Player_luck, int Player_coins, 
+    public static List<Integer> battle_system(Foes Monster, int Player_Health, int agility,  Integer Player_Strength, int Player_luck, int Player_coins, 
     String name, boolean user_escape, List<InventoryObject> UserInventory, InventoryObject Small_Health_Potion, 
     InventoryObject Medium_Health_Potion, InventoryObject Big_Health_Potion, InventoryObject Strength_token, InventoryObject Bow, 
     InventoryObject Speedy_Pills, InventoryObject Mysterious_Potion, InventoryObject Lucky_Clover, InventoryObject Dodge_Tonic, InventoryObject Cactus_Sword, 
-    InventoryObject Soap, int Dodges, ArrayList<String> Weapons){
+    InventoryObject Soap, int Dodges, ArrayList<String> Weapons, List<Integer> Player_Stats){
 
             int monster_Health = Monster.getHealth();
             int escape_probability = 0;
@@ -994,7 +995,6 @@ public class Text_Adventure {
             Random rand = new Random();
             File gui = new File("gui.txt");
             Scanner scan = new Scanner(System.in);
-
         do {
             if (UserInventory.size() == 0){
                 slowPrint("Do you: [1] Fight, [2] Escape?");
@@ -1034,9 +1034,11 @@ public class Text_Adventure {
 
             if (user_choice.toLowerCase().strip().equals("fight") || user_choice.toLowerCase().strip().equals("1")) {
                 for (int i = 1; i <= agility; i++){
-                    
+                    if (i >= 2) {
+                            slowPrint("You managed to make another attack due to your high agility");
+                        }
                     damage_dealt = Player_Strength;
-                    damage_dealt += rand.nextInt(Player_Strength/2);
+                    damage_dealt += rand.nextInt(Player_Strength/3);
                     monster_Health -= damage_dealt;
                     slowPrint("Your attack dealt " + damage_dealt + " damage points");
 
@@ -1066,7 +1068,7 @@ public class Text_Adventure {
                     for (int i = 1; i <= Monster.getAgility(); i++){
                     
                         if (i >= 2) {
-                            slowPrint("The monster managed to make another attack due its high agility");
+                            slowPrint("The " + Monster.getMonster_name() + " managed to make another attack due its high agility");
                         }
                         damage_dealt = Monster.getMinStrength();
                         damage_dealt += rand.nextInt(Monster.getMaxStrength() - Monster.getMinStrength());
@@ -1309,9 +1311,13 @@ public class Text_Adventure {
         }while (user_escape == false && monster_Health != 0);
         user_escape = false;
         
-       
+        Player_Stats = new ArrayList<>();
+        Player_Stats.add(Player_Health);
+        Player_Stats.add(agility);
+        Player_Stats.add(Player_luck);
+        Player_Stats.add(Player_Strength);
 
-        return Player_Health;
+        return Player_Stats;
     }
 
     //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1504,8 +1510,8 @@ public class Text_Adventure {
 
         int Player_coins = 0;
         int Player_Health = 100;
-        int Player_Strength = 5;
-        int agility = 1;
+        Integer Player_Strength = 5;
+        Integer agility = 1;
         int Player_luck = 0;
         int damage_dealt = 0;
         int Dodges = 0;
@@ -1519,7 +1525,8 @@ public class Text_Adventure {
         Foes Dagger_Bandit = new Foes("Dagger Bandit",7, 12, 1, 20);
         Foes Sword_Bandit = new Foes("Sword Bandit",10, 17, 1, 25);
         Foes Bow_bandit = new Foes("Bow bandit",3, 5, 5, 30);
-        Foes Bandit_Boss = new Foes("Bandit Boss",2, 20, 1, 40);
+        Foes Bandit_Boss = new Foes("Bandit Boss",5, 20, 1, 40);
+        Foes Royal_Guard = new Foes("Royal Guard", 8, 25, 2, 40);
         Foes Troll = new Foes("Troll",7, 9, 1, 50);
         Foes Ciclops = new Foes("Ciclops",12, 23, 1, 40);
         Foes Goblin = new Foes("Goblin gang",7, 12, 3, 24);
@@ -1547,11 +1554,13 @@ public class Text_Adventure {
         // a list with all the objects the user have
         List<InventoryObject> UserInventory = new ArrayList<>();
         ArrayList<String> Weapons = new ArrayList<>();
-
+        List<Integer> Player_Stats = new ArrayList<>(Arrays.asList(1,0,5));
+        
 
         // A code to test the shop function
 
-        // Player_coins += 200;
+        Player_coins += 200;
+        
         // String name = scan.nextLine();
         // deletefile(gui);
         // idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
@@ -1599,8 +1608,12 @@ public class Text_Adventure {
         slowPrint("You slowly walk through the forest when you encounter a leaf monster");
             
         //! First monster
-        Player_Health = battle_system(Leaf_Monster, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons);
+        Player_Stats = battle_system(Leaf_Monster, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
         Player_coins += (int)Leaf_Monster.getHealth()/2;
+        Player_Health = Player_Stats.get(0);
+        agility = Player_Stats.get(1);
+        Player_luck = Player_Stats.get(2);
+        Player_Strength = Player_Stats.get(3);
         deletefile(gui);
         idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
 
@@ -1609,8 +1622,12 @@ public class Text_Adventure {
         slowPrint("of a savage wolf who came due to the commotion caused by your battle.");
         
         //! Second monster
-        Player_Health = battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons);
+        Player_Stats = battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
         Player_coins += (int)Wolf.getHealth()/2;
+        Player_Health = Player_Stats.get(0);
+        agility = Player_Stats.get(1);
+        Player_luck = Player_Stats.get(2);
+        Player_Strength = Player_Stats.get(3);
 
         slowPrint("After what happened with the wolf, extremely tired, you decided to take a nap...");
             
@@ -1638,13 +1655,20 @@ public class Text_Adventure {
 
         if (choice.strip().toLowerCase().equals("1") || choice.strip().toLowerCase().equals("investigate")){
             slowPrint("You find a Mud Golem attacking the man that saved you earlier");
-            Player_Health = battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons);
+            Player_Stats = battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
             Player_coins += (int)Mud_Golem.getHealth()/2;
-            System.out.println(Mud_Golem.getHealth());
+            Player_Health = Player_Stats.get(0);
+            agility = Player_Stats.get(1);
+            Player_luck = Player_Stats.get(2);
+            Player_Strength = Player_Stats.get(3);
+
             slowPrint("The man who was almoust killed decides to give you a iron sword in gratitude. ");
 
             Sword_status = "Iron";
-            Weapons.set(2, Sword_status);
+
+            // varillas lo de abajo explota el codigo :v
+
+            // Weapons.set(2, Sword_status);
             slowPrint("YOUR WOODEN SWORD HAS BEEN UPGRADED TO AN IRON SWORD");
             Player_Strength += 10;
             deletefile(gui);
@@ -1669,49 +1693,139 @@ public class Text_Adventure {
         village();
         clear();
         slowPrint("During your adventure you found a village so you decide to stay for a moment.");
-        slowPrint("When you arrive to the village you see an items shop.");
-        System.out.println("Do you: [1] Enter, [2] Ignore ");
+        
+        slowPrint("When you arrive to the village you: [1] Explore, [2] Rest at a Inn");
         choice = scan.nextLine();
-        while (!choice.strip().toLowerCase().equals("enter") && !choice.strip().toLowerCase().equals("ignore") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
+
+        while (!choice.strip().toLowerCase().equals("explore") && !choice.strip().toLowerCase().equals("restatainn") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
             clear();
-            slowPrint("You need to choose either to enter or ignore the shop");
-            System.out.println("");
-            System.out.println("Do you: [1] Enter, [2] Ignore ");
+            slowPrint("You need to choose either to explore the village or take a rest.");
+            slowPrint("");
+            slowPrint("Do you: [1] Explore, [2] Rest at a Inn");
             choice = scan.nextLine();
         }
 
-        if(choice.strip().toLowerCase().equals("enter")||choice.strip().toLowerCase().equals("1") ){
+        if(choice.strip().toLowerCase().equals("explore")||choice.strip().toLowerCase().equals("1") ){
+            clear();
+            slowPrint("While exploring you found a shop");
+            slowPrint("Do you: [1] Enter, [2] Ignore ");
+            choice = scan.nextLine();
+
+            while (!choice.strip().toLowerCase().equals("enter") && !choice.strip().toLowerCase().equals("ignore") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
+            clear();
+            slowPrint("You need to choose either to enter or ignore the shop");
+            slowPrint("");
+            slowPrint("Do you: [1] Enter, [2] Ignore ");
+            choice = scan.nextLine();
+            }
+
+            if(choice.strip().toLowerCase().equals("enter")||choice.strip().toLowerCase().equals("1") ){
             clear();
             Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, 
-            Strength_token, Bow, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Cactus_Sword, Soap, 
-            Player_coins, Weapons, gui, name, Player_Health, agility, Player_luck, Player_Strength, Dodges);
-            slowPrint("You get outsite the shop and continue your quest ");
-        } 
-        else{
+            Strength_token, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Cactus_Sword, Soap, Bow, Player_coins, 
+            Weapons, gui, name, Player_Health, agility, Player_luck, Player_Strength, Dodges);
+            slowPrint("You get outsite the shop and decide to keep walking in the village");
+            } 
+            else{
             slowPrint("You decide to keep walking in the village");
-        }
-        slowPrint("Then a villager saw your sword and talk to you ");
-        slowPrint("Traveler some bandits were attackin our village but we don't have any warrior in the ");
-        slowPrint("village can you take care of those bandits for us");
-        pause(1500);
-        System.out.println("Do you: [1] Accept, [2] Refuse ");
-        choice = scan.nextLine();
-        while (!choice.strip().toLowerCase().equals("accept") && !choice.strip().toLowerCase().equals("refuse") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
+            }
+
+            slowPrint("A villager saw your sword and decided to talk to you.");
+            slowPrint("Traveler some bandits were attackin our village");
+            slowPrint("We don't have enougth warriors to figth them, could you take care of them for us?");
+            pause(1500);
+            slowPrint("Do you: [1] Accept, [2] Refuse ");
+            choice = scan.nextLine();
+            pause(1500);
+            clear();
+            while (!choice.strip().toLowerCase().equals("accept") && !choice.strip().toLowerCase().equals("refuse") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
                 slowPrint("You need to choose either to accept or refuse the request");
                 choice = scan.nextLine();
                 System.out.println("");
             }
-        if(choice.strip().toLowerCase().equals("accept") || choice.strip().toLowerCase().equals("1")){
-            slowPrint("Thanks traveler we are in debt on you");
-            slowPrint("after accept the request you decide to go to the bandits base and take they down ");
-            slowPrint(name+"has arrive to the bandits base during the night ");
-            slowPrint("so you decide to raid the base and kill all the bandits");
+            if(choice.strip().toLowerCase().equals("accept") || choice.strip().toLowerCase().equals("1")){
+                slowPrint("Thanks traveler we owe you one");
+                slowPrint("After accepting the request you decide to go towards the bandit's base and take them down");
+                slowPrint("You arrived to the bandits base during the night");
+                slowPrint("So you decide to raid the base and kill all the bandits.");
+                pause(4500);
+                clear();
 
+                slowPrint("You found a Dagger bandit");
+                Player_Stats = battle_system(Dagger_Bandit, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+                Player_coins += (int)Dagger_Bandit.getHealth()/2;
+                Player_Health = Player_Stats.get(0);
+                agility = Player_Stats.get(1);
+                Player_luck = Player_Stats.get(2);
+                Player_Strength = Player_Stats.get(3);
+                slowPrint("You found a Sword bandit");
+                Player_Stats = battle_system(Sword_Bandit, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+                Player_coins += (int)Sword_Bandit.getHealth()/2;
+                Player_Health = Player_Stats.get(0);
+                agility = Player_Stats.get(1);
+                Player_luck = Player_Stats.get(2);
+                Player_Strength = Player_Stats.get(3);
+                slowPrint("You found a Bow bandit");
+                Player_Stats = battle_system(Bow_bandit, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+                Player_coins += (int)Bow_bandit.getHealth()/2;
+                Player_Health = Player_Stats.get(0);
+                agility = Player_Stats.get(1);
+                Player_luck = Player_Stats.get(2);
+                Player_Strength = Player_Stats.get(3);
+                slowPrint("You found the bandit Boss");
+                Player_Stats = battle_system(Bandit_Boss, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+                Player_coins += (int)Bandit_Boss.getHealth()/2;
+                Player_Health = Player_Stats.get(0);
+                agility = Player_Stats.get(1);
+                Player_luck = Player_Stats.get(2);
+                Player_Strength = Player_Stats.get(3);
+            }
+            else{
+                slowPrint("you decide to refuse the request and continue your quest");
+                slowPrint("The day passed as you explored the inn but you couldn't find something interesting ");
+                slowPrint("So you decided to go and rest at the inn");
+                pause(3500);
+                clear();
+                slowPrint("On your way to the inn you found a royal guard that started to bother you");
+                slowPrint("Do you: [1] Attack, [2] Ignore ");
                 
+                while (!choice.strip().toLowerCase().equals("attack") && !choice.strip().toLowerCase().equals("ignore") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
+                slowPrint("You need to choose either to accept or refuse the request");
+                choice = scan.nextLine();
+                System.out.println("");
+                }
+                if(choice.strip().toLowerCase().equals("attack") || choice.strip().toLowerCase().equals("1")){
+                
+                slowPrint("You decided to attack the royal guard");
+                
+                Player_Stats = battle_system(Royal_Guard, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+                Player_coins += (int)Royal_Guard.getHealth()/2;
+                Player_Health = Player_Stats.get(0);
+                agility = Player_Stats.get(1);
+                Player_luck = Player_Stats.get(2);
+                Player_Strength = Player_Stats.get(3);
+
+                }
+                else{
+
+                slowPrint("The royal guard decided to attack you for ignoring him");
+                Player_Stats = battle_system(Royal_Guard, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+                Player_coins += (int)Royal_Guard.getHealth()/2;
+                Player_Health = Player_Stats.get(0);
+                agility = Player_Stats.get(1);
+                Player_luck = Player_Stats.get(2);
+                Player_Strength = Player_Stats.get(3);
+
+                }
+            }
+        }else{
+            slowPrint("You arrived at the inn were they charged you 5 golden coins to pass the day.");
+            slowPrint("you were able to sleep peacefully in the in");
+            slowPrint("10 HP have been restored");
+            Player_Health += 10;
         }
-        else{
-            slowPrint("you decide to refuse the request and continue your quest ");
-        }
+
+        
 
             deletefile(gui);
 
