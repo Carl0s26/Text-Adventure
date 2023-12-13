@@ -125,6 +125,9 @@ public class Text_Adventure {
         public String getobject_name() {
             return object_name;
         }
+        public void setName(String object_name){
+            this.object_name = object_name;
+        }
     }
     
 
@@ -210,7 +213,7 @@ public class Text_Adventure {
     
 
     //*DONE!!!!!!!!!!
-    static Boolean debugMode = false;
+    static Boolean debugMode = true;
 
     static void debugFunction(String message){
         if(debugMode){
@@ -226,7 +229,7 @@ public class Text_Adventure {
     //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+    
 
     // the function for the user to buy objects
     public static int shop(ArrayList<InventoryObject> AllObjects, List<InventoryObject> UserInventory, InventoryObject Small_Health_Potion, 
@@ -1501,6 +1504,19 @@ public class Text_Adventure {
             e.printStackTrace();
         }
     }
+    //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        
+
+            
+
+        
+
+
 
     //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //! ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1658,12 +1674,12 @@ public class Text_Adventure {
         // a list with all the objects the user have
         List<InventoryObject> UserInventory = new ArrayList<>();
         ArrayList<String> Weapons = new ArrayList<>();
-        List<Integer> Player_Stats = new ArrayList<>(Arrays.asList(1,0,5));
+        List<Integer> Player_Stats = new ArrayList<>();
         
 
         // A code to test the shop function
 
-        Player_coins += 200;
+        // Player_coins += 200;
         
         // String name = scan.nextLine();
         // deletefile(gui);
@@ -1678,152 +1694,163 @@ public class Text_Adventure {
         // }
         // System.out.println(Weapons);
 
-        //! START OF CABIN
+        // ! START OF CABIN
 
-        // deletefile(gui);
-        // start_screen();
+        deletefile(gui);
+        start_screen();
 
-        // debugFunction("You wake up in a cabin in the middle of the woods, your head is ");
-        // debugFunction("bleeding and a man is treating your wounds.");
-        // debugFunction("The man says in a raspy voice: 'You recieved quite a beating in");
-        // debugFunction("those woods young one, what may your name be?");
-        // System.out.println("");
-        // System.out.print("Your name: ");
-        // String name = scan.nextLine();
-        // System.out.println("");
+        debugFunction("You wake up in a cabin in the middle of the woods, your head is ");
+        debugFunction("bleeding and a man is treating your wounds.");
+        debugFunction("The man says in a raspy voice: 'You recieved quite a beating in");
+        debugFunction("those woods young one, what may your name be?");
+        System.out.println("");
+        System.out.print("Your name: ");
+        String name = scan.nextLine();
+        System.out.println("");
 
-        // debugFunction(name + "?, huh, thats a nice name");
-        // debugFunction("Its too dangerous to go into the forest on your own.");
-        // debugFunction("I have a spare wooden sword,");
-        // debugFunction("you should take it just in case something happens out there.");
-        // System.out.println("");
-        // debugFunction("YOU HAVE NOW UNLOCKED THE WOODEN SWORD WEAPON");
-        // System.out.println("");
-        // Sword_status = "Wooden";
-        // Weapons.add(Sword_status);
+        debugFunction(name + "?, huh, thats a nice name");
+        debugFunction("Its too dangerous to go into the forest on your own.");
+        debugFunction("I have a spare wooden sword,");
+        debugFunction("you should take it just in case something happens out there.");
+        System.out.println("");
+        debugFunction("YOU HAVE NOW UNLOCKED THE WOODEN SWORD WEAPON");
+        System.out.println("");
+        Sword_status = "Wooden";
+        Weapons.add(Sword_status);
         
-        // //Weapons.add(Sword_status);
-        // pause(1000);
-        // debugFunction("Now get out of my house, I can't take care of you forever!'");
+        //Weapons.add(Sword_status);
+        pause(1000);
+        debugFunction("Now get out of my house, I can't take care of you forever!'");
             
-        // pause(2000);
-        // clear();
+        pause(2000);
+        clear();
 
-        // //! END OF CABIN
+        //! END OF CABIN
 
 
-        // //! START OF FOREST
+        //! START OF FOREST
 
-        // deletefile(gui);
-        // idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
+        deletefile(gui);
+        idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
 
-        // debugFunction("You get out of the house looking at the bright sun as you walk towards the forest.");
-        // debugFunction("You slowly walk through the forest when you encounter a leaf monster");
+        debugFunction("You get out of the house looking at the bright sun as you walk towards the forest.");
+        debugFunction("You slowly walk through the forest when you encounter a leaf monster");
             
-        // //! First monster
-        // Player_Stats = battle_system(Leaf_Monster, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  
-        // Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover, 
-        // Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
-        // Player_coins += (int)Leaf_Monster.getHealth()/2;
-        // Player_Health = Player_Stats.get(0);
-        // agility = Player_Stats.get(1);
-        // Player_luck = Player_Stats.get(2);
-        // Player_Strength = Player_Stats.get(3);
-        // deletefile(gui);
-        // idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
-
-
-        // debugFunction("After the encounter with the Leaf Monster, " + name + " found themselves infront");
-        // debugFunction("of a savage wolf who came due to the commotion caused by your battle.");
+        //! First monster
+        Player_Stats = battle_system(Leaf_Monster, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  
+        Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover, 
+        Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
         
-        // //! Second monster
-        // Player_Stats = battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  
-        // Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  
-        // Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
-        // Player_coins += (int)Wolf.getHealth()/2;
-        // Player_Health = Player_Stats.get(0);
-        // agility = Player_Stats.get(1);
-        // Player_luck = Player_Stats.get(2);
-        // Player_Strength = Player_Stats.get(3);
+            Player_Health = Player_Stats.get(0);
+            agility = Player_Stats.get(1);
+            Player_luck = Player_Stats.get(2);
+            Player_Strength = Player_Stats.get(3);
+            if (Player_Stats.get(4) == 0) {
+            Player_coins += (int)Leaf_Monster.getHealth()/2;
+        }
+        deletefile(gui);
+        idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
 
-        // debugFunction("After the encounter with the wolf, " + name + " found themselves extremely tired, you to take nap...");
+
+        debugFunction("After the encounter with the Leaf Monster, " + name + " found themselves infront");
+        debugFunction("of a savage wolf who came due to the commotion caused by your battle.");
+        
+        //! Second monster
+        Player_Stats = battle_system(Wolf, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  
+        Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  
+        Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+       
+        Player_Health = Player_Stats.get(0);
+        agility = Player_Stats.get(1);
+        Player_luck = Player_Stats.get(2);
+        Player_Strength = Player_Stats.get(3);
+        if (Player_Stats.get(4) == 0) {
+            Player_coins += (int)Wolf.getHealth()/2;
+        }
+        
+
+        debugFunction("After the encounter with the wolf, " + name + " found themselves extremely tired, you to take nap...");
             
-        // deletefile(gui);
-        // sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
-        // pause(4000);
-        // deletefile(gui);
-        // clear();
-        // idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
+        deletefile(gui);
+        sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
+        pause(4000);
+        deletefile(gui);
+        clear();
+        idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
             
-        // debugFunction("You suddently woke up hearing screams in the middle of the now completely dark forest.");
+        debugFunction("You suddently woke up hearing screams in the middle of the now completely dark forest.");
 
-        // debugFunction("Do you: [1] Investigate, [2] Continue sleeping");
-        // String choice = scan.nextLine();
-        // System.out.println("");
-        // clear();
+        debugFunction("Do you: [1] Investigate, [2] Continue sleeping");
+        String choice = scan.nextLine();
+        System.out.println("");
+        clear();
 
-        // while (!choice.strip().toLowerCase().equals("investigate") && !choice.strip().toLowerCase().equals("sleeping") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")&& !choice.strip().toLowerCase().equals("sleep")&& !choice.strip().toLowerCase().equals("continuesleeping")) {
-        //     debugFunction("You need to choose either to escape or to fight");
-        //     System.out.println("");
-        //     debugFunction("Do you: [1] Investigate, [2] Continue sleeping");
-        //     choice = scan.nextLine();
-        //     clear();
-        // }
+        while (!choice.strip().toLowerCase().equals("investigate") && !choice.strip().toLowerCase().equals("sleeping") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")&& !choice.strip().toLowerCase().equals("sleep")&& !choice.strip().toLowerCase().equals("continuesleeping")) {
+            debugFunction("You need to choose either to escape or to fight");
+            System.out.println("");
+            debugFunction("Do you: [1] Investigate, [2] Continue sleeping");
+            choice = scan.nextLine();
+            clear();
+        }
 
         // //! THIRD MONSTER
-        // if (choice.strip().toLowerCase().equals("1") || choice.strip().toLowerCase().equals("investigate")){
-        //     debugFunction("You find a Mud Golem attacking the man that saved you earlier");
-        //     Player_Stats = battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
-        //     Player_coins += (int)Mud_Golem.getHealth()/2;
-        //     Player_Health = Player_Stats.get(0);
-        //     agility = Player_Stats.get(1);
-        //     Player_luck = Player_Stats.get(2);
-        //     Player_Strength = Player_Stats.get(3);
+        if (choice.strip().toLowerCase().equals("1") || choice.strip().toLowerCase().equals("investigate")){
+            debugFunction("You find a Mud Golem attacking the man that saved you earlier");
+            Player_Stats = battle_system(Mud_Golem, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+           
+                Player_Health = Player_Stats.get(0);
+            agility = Player_Stats.get(1);
+            Player_luck = Player_Stats.get(2);
+            Player_Strength = Player_Stats.get(3);
+            if (Player_Stats.get(4) == 0) {
+                Player_coins += (int)Mud_Golem.getHealth()/2;
+            
+                debugFunction("The man who was almost killed decides to give you a iron sword in gratitude. ");
+                Sword_status = "Iron";
+                Weapons.set(0, Sword_status);
+                System.out.println("");
+                debugFunction("YOUR WOODEN SWORD HAS BEEN UPGRADED TO AN IRON SWORD");
+                System.out.println("");
+                Player_Strength += 10;
+                deletefile(gui);
+                idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
+                debugFunction("After that match with the golem, you continue sleeping.");
 
-        //     debugFunction("The man who was almost killed decides to give you a iron sword in gratitude. ");
-
-        //     Sword_status = "Iron";
-
-        //     Weapons.set(0, Sword_status);
-        //     System.out.println("");
-        //     debugFunction("YOUR WOODEN SWORD HAS BEEN UPGRADED TO AN IRON SWORD");
-        //     System.out.println("");
-        //     Player_Strength += 10;
-        //     deletefile(gui);
-        //     idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
-
-        //     debugFunction("After that match with the golem, you continue sleeping ");
-        //     deletefile(gui);
-        //     sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
-        //     debugFunction("until sun rise and continue your quest.");   
-        //     System.out.println("");
-        //     debugFunction("SLEEPING HAS HEALED YOU BY 15 POINTS");
-        //     Player_Health += 15;
-        //     deletefile(gui);
-        //     sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
-        //     System.out.println("");
+            } 
+            else{
+                debugFunction("After managing to escape the golem, you continue sleeping.");
+            }
+            
+            deletefile(gui);
+            sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
+            debugFunction("until sun rise and continue your quest.");   
+            System.out.println("");
+            debugFunction("SLEEPING HAS HEALED YOU BY 15 POINTS");
+            Player_Health += 15;
+            deletefile(gui);
+            sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
+            System.out.println("");
         
-        // }else{
+        }else{
 
-        // deletefile(gui);
-        // sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
-        // debugFunction("You continue sleeping until sun rise and continue your quest.");
-        // System.out.println("");
-        // debugFunction("SLEEPING HAS HEALED YOU BY 15 POINTS");
-        // Player_Health += 15;
-        // deletefile(gui);
-        // sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
-        // System.out.println("");
+        deletefile(gui);
+        sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
+        debugFunction("You continue sleeping until sun rise and continue your quest.");
+        System.out.println("");
+        debugFunction("SLEEPING HAS HEALED YOU BY 15 POINTS");
+        Player_Health += 15;
+        deletefile(gui);
+        sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
+        System.out.println("");
         
-        // }
+        }
 
         // //!END OF FOREST
 
 
         //! START OF VILLAGE
         
-        String choice;
-        String name = "egg";
+
 
         pause(3000);
         Boolean searched_coins = false;
@@ -1905,13 +1932,16 @@ public class Text_Adventure {
                     clear();
                     debugFunction("You enter the minigame when you find a bandit shooting arrows everywhere");
                     Player_Stats = battle_system(Bow_bandit, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
-                    Player_coins += (int)Bow_bandit.getHealth()/2;
+                    if (Player_Health > 0) {
+                        
+                    }
                     Player_Health = Player_Stats.get(0);
                     agility = Player_Stats.get(1);
                     Player_luck = Player_Stats.get(2);
                     Player_Strength = Player_Stats.get(3);
                     pause(2000);
                     if (Player_Stats.get(4) == 0){
+                        Player_coins += (int)Bow_bandit.getHealth()/2;
                         bow_broke = true;
                         clear();
                         debugFunction("Thank you so much traveler, thanks to you, my minigame is safe");
@@ -1978,13 +2008,14 @@ public class Text_Adventure {
                         debugFunction("Bandit- Yeah, thats right");
                         debugFunction("Bandit- Just in range for me to BITE");
                         Player_Stats = battle_system(Dagger_Bandit, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
-                        Player_coins += (int)Dagger_Bandit.getHealth()/2;
+                        
                         Player_Health = Player_Stats.get(0);
                         agility = Player_Stats.get(1);
                         Player_luck = Player_Stats.get(2);
                         Player_Strength = Player_Stats.get(3);
                         pause(2000);
                         if (Player_Stats.get(4) == 0){
+                            Player_coins += (int)Dagger_Bandit.getHealth()/2;
                             searched_coins = true;
                         }
                         
@@ -2309,147 +2340,121 @@ public class Text_Adventure {
 
         //! END OF VILLAGE
         
-        // debugFunction("When you arrive to the village you: [1] Explore, [2] Rest at a Inn");
-        // choice = scan.nextLine();
-
-        // while (!choice.strip().toLowerCase().equals("explore") && !choice.strip().toLowerCase().equals("restatainn") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
-        //     clear();
-        //     debugFunction("You need to choose either to explore the village or take a rest.");
-        //     debugFunction("");
-        //     debugFunction("Do you: [1] Explore, [2] Rest at a Inn");
-        //     choice = scan.nextLine();
-        // }
-
-        // if(choice.strip().toLowerCase().equals("explore")||choice.strip().toLowerCase().equals("1") ){
-        //     clear();
-        //     debugFunction("While exploring you found a shop");
-        //     debugFunction("Do you: [1] Enter, [2] Ignore ");
-        //     choice = scan.nextLine();
-
-        //     while (!choice.strip().toLowerCase().equals("enter") && !choice.strip().toLowerCase().equals("ignore") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
-        //     clear();
-        //     debugFunction("You need to choose either to enter or ignore the shop");
-        //     debugFunction("");
-        //     debugFunction("Do you: [1] Enter, [2] Ignore ");
-        //     choice = scan.nextLine();
-        //     }
-
-        //     if(choice.strip().toLowerCase().equals("enter")||choice.strip().toLowerCase().equals("1") ){
-        //     clear();
-        //     Player_coins = shop(AllObjects, UserInventory, Small_Health_Potion, Medium_Health_Potion, Big_Health_Potion, 
-        //     Strength_token, Speedy_Pills, Mysterious_Potion, Lucky_Clover, Dodge_Tonic, Cactus_Sword, Soap, Bow, Player_coins, 
-        //     Weapons, gui, name, Player_Health, agility, Player_luck, Player_Strength, Dodges);
-        //     debugFunction("You get outsite the shop and decide to keep walking in the village");
-        //     } 
-        //     else{
-        //     debugFunction("You decide to keep walking in the village");
-        //     }
-
-        //     debugFunction("A villager saw your sword and decided to talk to you.");
-        //     debugFunction("Traveler some bandits were attackin our village");
-        //     debugFunction("We don't have enougth warriors to figth them, could you take care of them for us?");
-        //     pause(1500);
-        //     debugFunction("Do you: [1] Accept, [2] Refuse ");
-        //     choice = scan.nextLine();
-        //     pause(1500);
-        //     clear();
-        //     while (!choice.strip().toLowerCase().equals("accept") && !choice.strip().toLowerCase().equals("refuse") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
-        //         debugFunction("You need to choose either to accept or refuse the request");
-        //         choice = scan.nextLine();
-        //         System.out.println("");
-        //     }
-        //     if(choice.strip().toLowerCase().equals("accept") || choice.strip().toLowerCase().equals("1")){
-        //         debugFunction("Thanks traveler we owe you one");
-        //         debugFunction("After accepting the request you decide to go towards the bandit's base and take them down");
-        //         debugFunction("You arrived to the bandits base during the night");
-        //         debugFunction("So you decide to raid the base and kill all the bandits.");
-        //         pause(4500);
-        //         clear();
-
-        //         debugFunction("You found a Dagger bandit");
-        //         Player_Stats = battle_system(Dagger_Bandit, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
-        //         Player_coins += (int)Dagger_Bandit.getHealth()/2;
-        //         Player_Health = Player_Stats.get(0);
-        //         agility = Player_Stats.get(1);
-        //         Player_luck = Player_Stats.get(2);
-        //         Player_Strength = Player_Stats.get(3);
-        //         debugFunction("You found a Sword bandit");
-        //         Player_Stats = battle_system(Sword_Bandit, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
-        //         Player_coins += (int)Sword_Bandit.getHealth()/2;
-        //         Player_Health = Player_Stats.get(0);
-        //         agility = Player_Stats.get(1);
-        //         Player_luck = Player_Stats.get(2);
-        //         Player_Strength = Player_Stats.get(3);
-        //         debugFunction("You found a Bow bandit");
-        //         Player_Stats = battle_system(Bow_bandit, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
-        //         Player_coins += (int)Bow_bandit.getHealth()/2;
-        //         Player_Health = Player_Stats.get(0);
-        //         agility = Player_Stats.get(1);
-        //         Player_luck = Player_Stats.get(2);
-        //         Player_Strength = Player_Stats.get(3);
-        //         debugFunction("You found the bandit Boss");
-        //         Player_Stats = battle_system(Bandit_Boss, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
-        //         Player_coins += (int)Bandit_Boss.getHealth()/2;
-        //         Player_Health = Player_Stats.get(0);
-        //         agility = Player_Stats.get(1);
-        //         Player_luck = Player_Stats.get(2);
-        //         Player_Strength = Player_Stats.get(3);
-        //     }
-        //     else{
-        //         debugFunction("you decide to refuse the request and continue your quest");
-        //         debugFunction("The day passed as you explored the inn but you couldn't find something interesting ");
-        //         debugFunction("So you decided to go and rest at the inn");
-        //         pause(3500);
-        //         clear();
-        //         debugFunction("On your way to the inn you found a royal guard that started to bother you");
-        //         debugFunction("Do you: [1] Attack, [2] Ignore ");
-                
-        //         while (!choice.strip().toLowerCase().equals("attack") && !choice.strip().toLowerCase().equals("ignore") && !choice.strip().toLowerCase().equals("1") && !choice.strip().toLowerCase().equals("2")) {
-        //         debugFunction("You need to choose either to accept or refuse the request");
-        //         choice = scan.nextLine();
-        //         System.out.println("");
-        //         }
-        //         if(choice.strip().toLowerCase().equals("attack") || choice.strip().toLowerCase().equals("1")){
-                
-        //         debugFunction("You decided to attack the royal guard");
-                
-        //         Player_Stats = battle_system(Royal_Guard, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
-        //         Player_coins += (int)Royal_Guard.getHealth()/2;
-        //         Player_Health = Player_Stats.get(0);
-        //         agility = Player_Stats.get(1);
-        //         Player_luck = Player_Stats.get(2);
-        //         Player_Strength = Player_Stats.get(3);
-
-        //         }
-        //         else{
-
-        //         debugFunction("The royal guard decided to attack you for ignoring him");
-        //         Player_Stats = battle_system(Royal_Guard, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
-        //         Player_coins += (int)Royal_Guard.getHealth()/2;
-        //         Player_Health = Player_Stats.get(0);
-        //         agility = Player_Stats.get(1);
-        //         Player_luck = Player_Stats.get(2);
-        //         Player_Strength = Player_Stats.get(3);
-
-        //         }
-        //     }
-        // }else{
-        //     debugFunction("You arrived at the inn were they charged you 5 golden coins to pass the day.");
-        //     debugFunction("you were able to sleep peacefully in the in");
-        //     debugFunction("10 HP have been restored");
-        //     Player_Health += 10;
-        // }
-
-        
-
-        //     deletefile(gui);
-
-        //     idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
+        // start of dungeon
             
-        //     pause(2000);
-        //     deletefile(gui);
+            debugFunction("You awake in a dark and small cell, only being able to see due to a small ligth passing througth the bars.");
+            debugFunction("You are able to notice that around you is a ciclops and a door which you think your able to lockpick.");
+            
+            debugFunction("Do you: [1] figth the ciclops, or [2] lockpick the door");
+            choice = scan.nextLine();
+            clear();
+            
+            while (!choice.equals("1") && !choice.equals("2") && !choice.equals("figth") && !choice.equals("lockpick")){
+                debugFunction("You need to choose to either [1] figth the ciclops, or [2] lockpick the door");
+                choice = scan.nextLine();
+                clear();
+            }
+            if (choice.toLowerCase().trim().equals("1") || choice.toLowerCase().trim().equals("figth") ) {
+                debugFunction("You decided to figth the ciclops");
+                Player_Stats = battle_system(Ciclops, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+                
+                Player_Health = Player_Stats.get(0);
+                agility = Player_Stats.get(1);
+                Player_luck = Player_Stats.get(2);
+                Player_Strength = Player_Stats.get(3);
+                if (Player_Stats.get(4) == 0){
+                    Player_coins += (int)Ciclops.getHealth()/2;
+                    debugFunction("You decided to lockpick the door after killing the Ciclops");
+                }
+                else{
+                    debugFunction("To escape the ciclop you decided to lockpick the door");
+                }
+           
+            }
+            else{
+                debugFunction("You decided to lockpick the door");
+            }
+            debugFunction("You managed to succesfully picklock the door escaping the cell");
+            pause(3000);
+            debugFunction("After getting out of the cell you found yourself in a hall when you encounter a troll");
+            Player_Stats = battle_system(Troll, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+                Player_Health = Player_Stats.get(0);
+                agility = Player_Stats.get(1);
+                Player_luck = Player_Stats.get(2);
+                Player_Strength = Player_Stats.get(3);
+                if (Player_Stats.get(4) == 0){
+                    Player_coins += (int)Troll.getHealth()/2;
+                }
+            debugFunction("After the figth with the troll");
+            debugFunction("you keep walking down the long hall with flickering lights and unsettling screams in the distance.");
+            debugFunction("You manage to see a pack of goblins coming for you");
+            Player_Stats = battle_system(Goblin, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+                Player_Health = Player_Stats.get(0);
+                agility = Player_Stats.get(1);
+                Player_luck = Player_Stats.get(2);
+                Player_Strength = Player_Stats.get(3);
+                if (Player_Stats.get(4) == 0){
+                    Player_coins += (int)Goblin.getHealth()/2;
+                }
+            debugFunction("After killing the first goblin a second goblin ran towards you");
+            Player_Stats = battle_system(Goblin, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+                Player_Health = Player_Stats.get(0);
+                agility = Player_Stats.get(1);
+                Player_luck = Player_Stats.get(2);
+                Player_Strength = Player_Stats.get(3);
+                if (Player_Stats.get(4) == 0){
+                    Player_coins += (int)Goblin.getHealth()/2;
+                }
+            debugFunction("After killing the second goblin you see a third goblin trying to sneak on you");
+            Player_Stats = battle_system(Goblin, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+                Player_Health = Player_Stats.get(0);
+                agility = Player_Stats.get(1);
+                Player_luck = Player_Stats.get(2);
+                Player_Strength = Player_Stats.get(3);
+                if (Player_Stats.get(4) == 0){
+                    Player_coins += (int)Goblin.getHealth()/2;
+                }
 
-        //! END OF VILLAGE
+            debugFunction("After figthing all the goblins your head starts to hurt but you decide to keep walking down the narrow hall");
+            debugFunction("Reaching the end of the hall you find a big room with a troll but you decided to enter anyway in hopes of finding an exit.");
+            Player_Stats = battle_system(Troll, Player_Health, agility, Player_Strength, Player_luck, Player_coins, name, user_escape, UserInventory,  Small_Health_Potion,  Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, Player_Stats);
+                Player_Health = Player_Stats.get(0);
+                agility = Player_Stats.get(1);
+                Player_luck = Player_Stats.get(2);
+                Player_Strength = Player_Stats.get(3);
+                if (Player_Stats.get(4) == 0){
+                    Player_coins += (int)Troll.getHealth()/2;
+                    debugFunction("After killing the Troll your head starts to hurt so much that you feel its about to explode,");
+                    debugFunction("just like when you awaken on the cavin for the first time.");
+                }
+                else{
+                    debugFunction("After escaping the Troll your head starts to hurt so much that you feel its about to explode,");
+                    debugFunction("just like when you awaken on the cavin for the first time.");
+                }
+            //! END OF Dungeon 
+
+            // Start of real world
+
+            Cactus_Sword.setName("Shard of glass");
+            Bow.setName("Fish hook");
+            Strength_token.setName("Steroids");
+            Dodge_Tonic.setName("Olive Oil");
+            Mysterious_Potion.setName("Cyanide");
+            Speedy_Pills.setName("Sugar Pills");
+            Small_Health_Potion.setName("Bandaid");
+            Medium_Health_Potion.setName("Medicine");
+            Big_Health_Potion.setName("Vaccine");
+            Lucky_Clover.setName("Oak Leaf");
+            Sword_status = "Scapel";
+            
+            
+        
+        
+        
+        
+        
+            
+
             writer.close();
     }
 
@@ -2464,7 +2469,39 @@ public class Text_Adventure {
 
     public static void main(String[] args) {
         try{
+            String Choice = ""; 
+            Scanner scan = new Scanner(System.in);
+            
             story();
+            if (Player_Health == 0) {
+                debugFunction("Victim found death");
+                debugFunction("YOU DIED");
+                pause(6000);
+                clear();
+            }
+        
+            
+        while (!Choice.strip().toLowerCase().equals("3")) {
+            debugFunction("Would you like to [1] Play again, [2] Rules, [3] Quit");
+            Choice = scan.nextLine();
+            while (!Choice.strip().toLowerCase().equals("1") && !Choice.strip().toLowerCase().equals("2") && !Choice.strip().toLowerCase().equals("3")) {
+                clear();
+                debugFunction("You need to choose One of the options");
+                debugFunction("Do you: [1] Play again, [2] Rules, [3] Quit");
+                Choice = scan.nextLine();
+                clear();
+                
+            }
+            if (Choice.strip().toLowerCase().equals("1")) {
+                story();
+            }
+            else if (Choice.strip().toLowerCase().equals("2")) {
+                // print the rules
+            }
+                    
+                
+            
+        }
         }catch(Exception e){
             System.out.println(e);
         }
