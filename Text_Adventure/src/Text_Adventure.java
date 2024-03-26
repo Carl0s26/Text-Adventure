@@ -213,7 +213,7 @@ public class Text_Adventure {
     
 
     //*DONE!!!!!!!!!!
-    static Boolean debugMode = true;
+    static Boolean debugMode = false;
 
     static void debugFunction(String message){
         if(debugMode){
@@ -1974,7 +1974,7 @@ public class Text_Adventure {
 
             debugFunction("You wake up in a cabin in the middle of the woods, your head is ");
             debugFunction("bleeding and a man is treating your wounds.");
-            debugFunction("The man says in a raspy voice: 'You recieved quite a beating in");
+            debugFunction("The man says in a raspy voice: 'You received quite a beating in");
             debugFunction("those woods young one, what may your name be?");
             System.out.println("");
             System.out.print("Your name: ");
