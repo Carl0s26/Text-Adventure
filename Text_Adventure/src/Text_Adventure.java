@@ -1543,6 +1543,9 @@ public class Text_Adventure {
                     
                 }
                 else{
+                    damage_dealt = Monster.getMinStrength();
+                    damage_dealt += rand.nextInt(Monster.getMaxStrength() - Monster.getMinStrength());
+                    Player_Health -= damage_dealt;
                     if(Dodges >= 1){
                         debugFunction("You dodged an attack from the monster");
                     }else{
@@ -1553,7 +1556,15 @@ public class Text_Adventure {
                             debugFunction("The " + Monster.getMonster_name() + "'s attack dealt " + damage_dealt + " damage points");
                         }
                     }
-                    
+                    deletefile(gui);
+                    damage(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
+                    pause(1000);
+                    deletefile(gui);
+                    idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
+            
+                    debugFunction("Your health is at: " + Player_Health);
+                    System.out.println("");
+                    damage_dealt = 0;
                     
                     for (int i = 1; i <= Monster.getAgility(); i++){
                         
@@ -1599,7 +1610,7 @@ public class Text_Adventure {
             
             
         }while (user_escape == false && monster_Health != 0);
-        user_escape = false;
+        //user_escape = false;
         
         Player_Stats = new ArrayList<>();
         Player_Stats.add(Player_Health);
@@ -2019,8 +2030,8 @@ public class Text_Adventure {
                 Player_luck = Player_Stats.get(2);
                 Player_Strength = Player_Stats.get(3);
                 if (Player_Stats.get(4) == 0) {
-                Player_coins += (int)Leaf_Monster.getHealth()/2;
-            }
+                    Player_coins += (int)Leaf_Monster.getHealth()/2;
+                }
             deletefile(gui);
             idle(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
 
@@ -2074,12 +2085,11 @@ public class Text_Adventure {
                 Player_Stats, nurse_on);
             
                     Player_Health = Player_Stats.get(0);
-                agility = Player_Stats.get(1);
-                Player_luck = Player_Stats.get(2);
-                Player_Strength = Player_Stats.get(3);
+                    agility = Player_Stats.get(1);
+                    Player_luck = Player_Stats.get(2);
+                    Player_Strength = Player_Stats.get(3);
                 if (Player_Stats.get(4) == 0) {
                     Player_coins += (int)Mud_Golem.getHealth()/2;
-                
                     debugFunction("The man who was almost killed decides to give you an iron sword in gratitude. ");
                     Sword_status = "Iron";
                     Weapons.set(0, Sword_status);
@@ -2102,6 +2112,9 @@ public class Text_Adventure {
                 System.out.println("");
                 debugFunction("SLEEPING HAS HEALED YOU BY 15 POINTS");
                 Player_Health += 15;
+                if (Player_Health > 100) {
+                    Player_Health = 100;
+                }
                 deletefile(gui);
                 sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
                 System.out.println("");
@@ -2114,6 +2127,9 @@ public class Text_Adventure {
             System.out.println("");
             debugFunction("SLEEPING HAS HEALED YOU BY 15 POINTS");
             Player_Health += 15;
+            if (Player_Health > 100) {
+                Player_Health = 100;
+            }
             deletefile(gui);
             sleeping(name, Player_Health, agility, Player_luck, Player_Strength, Player_coins, Dodges);
             System.out.println("");
@@ -2767,7 +2783,7 @@ public class Text_Adventure {
             //! END OF VILLAGE
             
             //! Start of dungeon
-                
+                dungeons();
                 clear();
                 debugFunction("You approach the castle when you see the king sitting in his throne");
                 debugFunction("King - We do not allow trespassers in our lands, take him away!");
@@ -2894,9 +2910,9 @@ public class Text_Adventure {
                 Medium_Health_Potion,  Big_Health_Potion,  Strength_token,  Bow,  Speedy_Pills,  Mysterious_Potion,  Lucky_Clover,  Dodge_Tonic,  Cactus_Sword,  Soap, Dodges, Weapons, 
                 Player_Stats, nurse_on);
 
-                if (Player_Stats.get(4) == 0){
+                if (Player_Stats.get(4) == 0){  //? wtf?
                     
-                }else if (Player_Health <= 0){
+                }if (Player_Health <= 0){
                     clear();
                     debugFunction("Nurse - There you are, not so hard now is it?");
                     clear();
@@ -2983,7 +2999,7 @@ public class Text_Adventure {
             
             }catch(RuntimeException e){
                 clear();
-                debugFunction("Victim found dead after fighting with nurse and ");
+                debugFunction("Victim found dead after fighting with nurse and ....");
                 debugFunction("YOU DIED");
                 pause(6000);
                 clear();
